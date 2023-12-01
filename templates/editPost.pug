@@ -1,0 +1,10 @@
+doctype html
+html(lang="en")
+    head
+        title Edit Post
+    body
+        h1 Edit Post
+        form(method="post", action=`/edit-post/${post.id}`)
+            textarea(name="content", required)= post.content
+            button(type="submit") Update
+

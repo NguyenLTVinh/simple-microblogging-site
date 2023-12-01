@@ -1,0 +1,20 @@
+doctype html
+html(lang="en")
+    head
+        title All Posts
+    body
+        h1 All Posts
+        form(action="/create-post", method="get")
+            button(type="submit") Create Post        
+        .posts-list
+            each post in posts
+                .post
+                    p.post-content
+                        a(href=`/post/${post.id}`)= post.content
+                    p.post-author= post.username
+
+        // Pagination buttons
+        if pagination.prev
+            a(href=`/?page=${pagination.prev}`) Previous
+        if pagination.next
+            a(href=`/?page=${pagination.next}`) Next

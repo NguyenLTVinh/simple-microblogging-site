@@ -1,0 +1,9 @@
+doctype html
+html(lang="en")
+    head
+        title Create Post
+    body
+        h1 Create New Post
+        form(method="post", action="/create-post")
+            textarea(name="content", required)
+            button(type="submit") Post

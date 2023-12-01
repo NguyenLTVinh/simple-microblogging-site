@@ -50,4 +50,79 @@ async function addPost(userId, content) {
   }
 }
 
-module.exports = { addUser, getUserByUsernameOrEmail};
+async function getPosts(limit = 10, offset = 0) {
+  const query = `
+      SELECT posts.*, users.username 
+      FROM posts
+      JOIN users ON posts.user_id = users.id
+      ORDER BY posts.created_at DESC 
+      LIMIT ? OFFSET ?`;
+  const values = [limit, offset];
+
+  try {
+      const posts = await connPool.awaitQuery(query, values);
+      return posts;
+  } catch (err) {
+      console.error(err);
+      throw err;
+  }
+}
+
+async function updatePost(postId, userId, newContent) {
+  const query = 'UPDATE posts SET content = ? WHERE id = ? AND user_id = ?';
+  const values = [newContent, postId, userId];
+
+  try {
+      await connPool.awaitQuery(query, values);
+  } catch (err) {
+      console.error(err);
+      throw err;
+  }
+}
+
+async function deletePost(postId, userId) {
+  const query = 'DELETE FROM posts WHERE id = ? AND user_id = ?';
+  const values = [postId, userId];
+
+  try {
+      await connPool.awaitQuery(query, values);
+  } catch (err) {
+      console.error(err);
+      throw err;
+  }
+}
+
+async function getPostById(postId) {
+  const query = 'SELECT * FROM posts WHERE id = ?';
+  const values = [postId];
+
+  try {
+      const results = await connPool.awaitQuery(query, values);
+      return results[0];
+  } catch (err) {
+      console.error('Error in getPostById:', err);
+      throw err;
+  }
+}
+async function getPostCount() {
+  const query = 'SELECT COUNT(*) AS count FROM posts';
+
+  try {
+      const results = await connPool.awaitQuery(query);
+      return results[0].count;
+  } catch (err) {
+      console.error('Error in getPostCount:', err);
+      throw err;
+  }
+}
+
+module.exports = { 
+  addUser, 
+  getUserByUsernameOrEmail, 
+  updatePost, 
+  addPost, 
+  getPosts, 
+  deletePost,
+  getPostById,
+  getPostCount
+};

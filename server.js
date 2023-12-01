@@ -21,11 +21,32 @@ app.use(session({
     cookie: { secure: false }
 }));
 
-
-app.get('/', (req, res) => {
-    res.send('Hi Mom!');
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Internal Server Error.');
 });
 
+
+app.get('/', async (req, res) => {
+    try {
+        const page = parseInt(req.query.page) || 1;
+        const limit = 10;
+        const offset = (page - 1) * limit;
+
+        const posts = await data.getPosts(limit, offset);
+        const totalPosts = await data.getPostCount();
+
+        const pagination = {
+            prev: page > 1 ? page - 1 : null,
+            next: totalPosts > offset + limit ? page + 1 : null
+        };
+
+        res.render('main', { posts, pagination });
+    } catch (error) {
+        console.error(error);
+        res.status(500).render('main', { error: 'Error fetching posts.' });
+    }
+});
 // Display the registration form
 app.get('/register', (req, res) => {
     res.render('register');
@@ -36,11 +57,46 @@ app.get('/login', (req, res) => {
     res.render('login');
 });
 
+// Post creation form
+app.get('/create-post', (req, res) => {
+    if (!req.session.userId) {
+        // User is not logged in, redirect to login page
+        res.redirect('/login');
+    } else {
+        res.render('createPost');
+    }
+});
+
+// Viewing an individual post
+app.get('/post/:id', async (req, res) => {
+    try {
+        const postId = req.params.id;
+        const post = await data.getPostById(postId);
+        const userId = req.session.userId;
+        res.render('post', { post , userId});
+    } catch (error) {
+        console.error(error);
+        res.status(500).render('error', { error: 'Error fetching post.' });
+    }
+});
+
+// Post edit form
+app.get('/edit-post/:id', async (req, res) => {
+    try {
+        const postId = req.params.id;
+        const post = await data.getPostById(postId);
+        res.render('editPost', { post });
+    } catch (error) {
+        console.error(error);
+        res.render('editPost', { error: 'Error fetching post for editing.' });
+    }
+});
+
 // Handle logging out
 app.get('/logout', (req, res) => {
     req.session.destroy((err) => {
         if(err) {
-            console.error('Exit session error:', err);
+            console.error(err);
             return res.redirect('/');
         }
         res.clearCookie('connect.sid');
@@ -72,7 +128,7 @@ app.post('/register', async (req, res) => {
         res.redirect('/login');
     } catch (error) {
         console.error(error);
-        res.render('register', { error: error.message });
+        res.status(400).render('register', { error: error.message });
     }
 });
 
@@ -97,12 +153,52 @@ app.post('/login', async (req, res) => {
         res.redirect('/');
     } catch (error) {
         console.error(error);
-        res.render('login', { error: error.message });
+        res.status(400).render('login', { error: error.message });
     }
 });
 
+// Handle post creation
+app.post('/create-post', async (req, res) => {
+    try {
+        const { content } = req.body;
+        const userId = req.session.userId;
+        await data.addPost(userId, content);
+        res.redirect('/');
+    } catch (error) {
+        console.error(error);
+        res.status(400).render('createPost', { error: 'Error creating post.' });
+    }
+});
 
+// Post update handling
+app.post('/edit-post/:id', async (req, res) => {
+    try {
+        const postId = req.params.id;
+        const { content } = req.body;
+        const userId = req.session.userId;
+        console.log(content);
+        console.log(postId);
+        console.log(userId);
+        await data.updatePost(postId, userId, content);
+        res.redirect('/');
+    } catch (error) {
+        console.error(error);
+        res.status(400).render('editPost', { error: 'Error updating post.' });
+    }
+});
 
+// Handling post deletion
+app.delete('/post/:id', async (req, res) => {
+    try {
+        const postId = req.params.id;
+        const userId = req.session.userId;
+        await data.deletePost(postId, userId);
+        res.status(200).send({ message: 'Post deleted successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error deleting post');
+    }
+});
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
