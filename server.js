@@ -29,12 +29,12 @@ app.use((err, req, res, next) => {
 
 app.get('/', async (req, res) => {
     try {
+        const userId = req.session.userId;
         const page = parseInt(req.query.page) || 1;
         const limit = 10;
         const offset = (page - 1) * limit;
         const sortBy = req.query.sort || 'created_at'; // default
-
-        const posts = await data.getPosts(limit, offset, sortBy);
+        const posts = await data.getPosts(limit, offset, sortBy, userId);
         const totalPosts = await data.getPostCount();
 
         const pagination = {
@@ -207,8 +207,20 @@ app.post('/edit-post/:id', async (req, res) => {
 app.post('/like-post/:id', async (req, res) => {
     try {
         const postId = req.params.id;
-        const updatedLikes = await data.addLikeToPost(postId);
-        res.status(200).send({ likes: updatedLikes });
+        const userId = req.session.userId;
+
+        if (!userId) {
+            return res.status(403).send('User not logged in');
+        }
+
+        const alreadyLiked = await data.checkLike(userId, postId);
+        if (alreadyLiked) {
+            await data.removeLike(userId, postId);
+        } else {
+            await data.addLike(userId, postId);
+        }
+
+        res.status(200).send();
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: error.message });

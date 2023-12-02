@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    setInterval(updateLikeCounts, 500);
+    setInterval(updateLikeCounts, 1000);
 });
 
 function goToPost(postId) {
@@ -8,7 +8,21 @@ function goToPost(postId) {
 
 async function likePost(postId) {
     try {
-        await fetch(`/like-post/${postId}`, { method: 'POST' });
+        const likeButton = document.getElementById(`like-btn-${postId}`);
+        const likeCountElement = document.getElementById(`like-count-${postId}`);
+
+        const response = await fetch(`/like-post/${postId}`, { method: 'POST' });
+        if (response.ok) {
+            let currentCount = parseInt(likeCountElement.innerText) || 0;
+            if (likeButton.dataset.liked === 'true') {
+                currentCount--;
+                likeButton.dataset.liked = 'false';
+            } else {
+                currentCount++;
+                likeButton.dataset.liked = 'true';
+            }
+            likeCountElement.innerText = currentCount;
+        }
     } catch (err) {
         console.error('Error:', err);
     }

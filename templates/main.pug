@@ -17,8 +17,8 @@ html(lang="en")
                 .post
                     p.post-content(onclick=`goToPost('${post.id}')`)= post.content
                     p.post-author= post.username
-                    button(onclick=`likePost('${post.id}')`) Like
-                    span(id=`like-count-${post.id}`)=  post.like_count
+                    button(id=`like-btn-${post.id}` onclick=`likePost('${post.id}')` data-liked=post.liked) Like
+                    span(id=`like-count-${post.id}`)= post.like_count
         // Pagination buttons
         if pagination.prev
             a(href=`/?page=${pagination.prev}`) Previous

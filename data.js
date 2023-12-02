@@ -50,14 +50,15 @@ async function addPost(userId, content) {
   }
 }
 
-async function getPosts(limit = 10, offset = 0, sortBy = 'created_at') {
+async function getPosts(limit = 10, offset = 0, sortBy = 'created_at', userId = null) {
   const query = `
-      SELECT posts.*, users.username 
+      SELECT posts.*, users.username,
+             (SELECT COUNT(*) FROM user_likes WHERE post_id = posts.id AND user_id = ?) as liked
       FROM posts
       JOIN users ON posts.user_id = users.id
       ORDER BY ${sortBy} DESC
       LIMIT ? OFFSET ?`;
-  const values = [limit, offset];
+  const values = [userId, limit, offset];
 
   try {
       const posts = await connPool.awaitQuery(query, values);
@@ -117,12 +118,48 @@ async function getPostCount() {
   }
 }
 
-async function addLikeToPost(postId) {
-  const updateQuery = 'UPDATE posts SET like_count = like_count + 1 WHERE id = ?';
-  const values = [postId];
+// Check if a user has already liked a post
+async function checkLike(userId, postId) {
+  const query = 'SELECT * FROM user_likes WHERE user_id = ? AND post_id = ?';
+  const values = [userId, postId];
 
   try {
-      await connPool.awaitQuery(updateQuery, values);
+      const results = await connPool.awaitQuery(query, values);
+      return results.length > 0;
+  } catch (err) {
+      console.error(err);
+      throw err;
+  }
+}
+
+// Add a like to a post
+async function addLike(userId, postId) {
+  const likeQuery = 'INSERT INTO user_likes (user_id, post_id) VALUES (?, ?)';
+  const likeValues = [userId, postId];
+
+  const updateQuery = 'UPDATE posts SET like_count = like_count + 1 WHERE id = ?';
+  const updateValues = [postId];
+
+  try {
+      await connPool.awaitQuery(likeQuery, likeValues);
+      await connPool.awaitQuery(updateQuery, updateValues);
+  } catch (err) {
+      console.error(err);
+      throw err;
+  }
+}
+
+// Remove a like from a post
+async function removeLike(userId, postId) {
+  const unlikeQuery = 'DELETE FROM user_likes WHERE user_id = ? AND post_id = ?';
+  const unlikeValues = [userId, postId];
+
+  const updateQuery = 'UPDATE posts SET like_count = like_count - 1 WHERE id = ?';
+  const updateValues = [postId];
+
+  try {
+      await connPool.awaitQuery(unlikeQuery, unlikeValues);
+      await connPool.awaitQuery(updateQuery, updateValues);
   } catch (err) {
       console.error(err);
       throw err;
@@ -153,6 +190,8 @@ module.exports = {
   deletePost,
   getPostById,
   getPostCount,
-  addLikeToPost,
-  getLikeCounts
+  getLikeCounts,
+  checkLike,
+  addLike,
+  removeLike,
 };
