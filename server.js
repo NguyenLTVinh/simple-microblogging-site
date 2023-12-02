@@ -221,7 +221,7 @@ app.delete('/post/:id', async (req, res) => {
         const postId = req.params.id;
         const userId = req.session.userId;
         await data.deletePost(postId, userId);
-        res.status(200);
+        res.status(200).send();
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: error.message });
