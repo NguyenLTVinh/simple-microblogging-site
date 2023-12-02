@@ -105,6 +105,18 @@ app.get('/logout', (req, res) => {
     });
 });
 
+// Get the like of a post
+app.get('/api/like-counts', async (req, res) => {
+    try {
+        const likeCounts = await data.getLikeCounts(); 
+        res.status(200).json(likeCounts);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error fetching like counts' });
+    }
+});
+
+
 // Handle the registration form submission
 app.post('/register', async (req, res) => {
     try {

@@ -10,7 +10,7 @@ html(lang="en")
         form(method="get", action="/")
             select(name="sort")
                 option(value="created_at") Newest
-                option(value="like-count") Most Liked
+                option(value="like_count") Most Liked
             button(type="submit") Sort
         .posts-list
             each post in posts

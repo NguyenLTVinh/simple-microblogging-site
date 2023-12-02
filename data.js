@@ -5,7 +5,7 @@ const mysql = require(`mysql-await`); // npm install mysql-await
 // this is used a bit differently, but I think it's just better -- especially if server is doing heavy work.
 var connPool = mysql.createPool({
   connectionLimit: 5, // it's a shared resource, let's not go nuts.
-  host: "127.0.0.1",// this will work
+  host: "cse-mysql-classes-01.cse.umn.edu",// this will work
   user: "C4131F23U159",
   database: "C4131F23U159",
   password: "25331", // we really shouldn't be saving this here long-term -- and I probably shouldn't be sharing it with you...
@@ -119,13 +119,25 @@ async function getPostCount() {
 
 async function addLikeToPost(postId) {
   const updateQuery = 'UPDATE posts SET like_count = like_count + 1 WHERE id = ?';
-  const selectQuery = 'SELECT like_count FROM posts WHERE id = ?';
   const values = [postId];
 
   try {
       await connPool.awaitQuery(updateQuery, values);
-      const result = await connPool.awaitQuery(selectQuery, values);
-      return result[0].like_count; // Return the updated like count
+  } catch (err) {
+      console.error(err);
+      throw err;
+  }
+}
+
+async function getLikeCounts() {
+  const query = 'SELECT id, like_count FROM posts';
+  try {
+      const results = await connPool.awaitQuery(query);
+      const likeCounts = {};
+      results.forEach(post => {
+          likeCounts[post.id] = post.like_count;
+      });
+      return likeCounts;
   } catch (err) {
       console.error(err);
       throw err;
@@ -141,5 +153,6 @@ module.exports = {
   deletePost,
   getPostById,
   getPostCount,
-  addLikeToPost
+  addLikeToPost,
+  getLikeCounts
 };
