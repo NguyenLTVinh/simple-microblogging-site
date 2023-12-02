@@ -32,8 +32,9 @@ app.get('/', async (req, res) => {
         const page = parseInt(req.query.page) || 1;
         const limit = 10;
         const offset = (page - 1) * limit;
+        const sortBy = req.query.sort || 'created_at'; // default
 
-        const posts = await data.getPosts(limit, offset);
+        const posts = await data.getPosts(limit, offset, sortBy);
         const totalPosts = await data.getPostCount();
 
         const pagination = {
@@ -44,7 +45,7 @@ app.get('/', async (req, res) => {
         res.render('main', { posts, pagination });
     } catch (error) {
         console.error(error);
-        res.status(500).render('main', { error: 'Error fetching posts.' });
+        res.status(500).render('main', { error: error.message });
     }
 });
 // Display the registration form
@@ -76,7 +77,7 @@ app.get('/post/:id', async (req, res) => {
         res.render('post', { post , userId});
     } catch (error) {
         console.error(error);
-        res.status(500).render('error', { error: 'Error fetching post.' });
+        res.status(500).render('error', { error: error.message });
     }
 });
 
@@ -88,7 +89,7 @@ app.get('/edit-post/:id', async (req, res) => {
         res.render('editPost', { post });
     } catch (error) {
         console.error(error);
-        res.render('editPost', { error: 'Error fetching post for editing.' });
+        res.status(500).render('editPost', { error: error.message });
     }
 });
 
@@ -150,6 +151,7 @@ app.post('/login', async (req, res) => {
             throw new Error('Invalid login credentials');
         }
         req.session.userId = user.id;
+        res.status(200);
         res.redirect('/');
     } catch (error) {
         console.error(error);
@@ -163,10 +165,11 @@ app.post('/create-post', async (req, res) => {
         const { content } = req.body;
         const userId = req.session.userId;
         await data.addPost(userId, content);
+        res.status(200);
         res.redirect('/');
     } catch (error) {
         console.error(error);
-        res.status(400).render('createPost', { error: 'Error creating post.' });
+        res.status(400).render('createPost', { error: error.message });
     }
 });
 
@@ -180,10 +183,23 @@ app.post('/edit-post/:id', async (req, res) => {
         console.log(postId);
         console.log(userId);
         await data.updatePost(postId, userId, content);
+        res.status(200);
         res.redirect('/');
     } catch (error) {
         console.error(error);
-        res.status(400).render('editPost', { error: 'Error updating post.' });
+        res.status(400).render('editPost', { error: error.message });
+    }
+});
+
+// Handle liking a post
+app.post('/like-post/:id', async (req, res) => {
+    try {
+        const postId = req.params.id;
+        const updatedLikes = await data.addLikeToPost(postId);
+        res.status(200).send({ likes: updatedLikes });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ error: error.message });
     }
 });
 
@@ -193,10 +209,10 @@ app.delete('/post/:id', async (req, res) => {
         const postId = req.params.id;
         const userId = req.session.userId;
         await data.deletePost(postId, userId);
-        res.status(200).send({ message: 'Post deleted successfully' });
+        res.status(200);
     } catch (error) {
         console.error(error);
-        res.status(500).send('Error deleting post');
+        res.status(500).send({ error: error.message });
     }
 });
 

@@ -50,12 +50,12 @@ async function addPost(userId, content) {
   }
 }
 
-async function getPosts(limit = 10, offset = 0) {
+async function getPosts(limit = 10, offset = 0, sortBy = 'created_at') {
   const query = `
       SELECT posts.*, users.username 
       FROM posts
       JOIN users ON posts.user_id = users.id
-      ORDER BY posts.created_at DESC 
+      ORDER BY ${sortBy} DESC
       LIMIT ? OFFSET ?`;
   const values = [limit, offset];
 
@@ -104,6 +104,7 @@ async function getPostById(postId) {
       throw err;
   }
 }
+
 async function getPostCount() {
   const query = 'SELECT COUNT(*) AS count FROM posts';
 
@@ -116,6 +117,21 @@ async function getPostCount() {
   }
 }
 
+async function addLikeToPost(postId) {
+  const updateQuery = 'UPDATE posts SET like_count = like_count + 1 WHERE id = ?';
+  const selectQuery = 'SELECT like_count FROM posts WHERE id = ?';
+  const values = [postId];
+
+  try {
+      await connPool.awaitQuery(updateQuery, values);
+      const result = await connPool.awaitQuery(selectQuery, values);
+      return result[0].like_count; // Return the updated like count
+  } catch (err) {
+      console.error(err);
+      throw err;
+  }
+}
+
 module.exports = { 
   addUser, 
   getUserByUsernameOrEmail, 
@@ -124,5 +140,6 @@ module.exports = {
   getPosts, 
   deletePost,
   getPostById,
-  getPostCount
+  getPostCount,
+  addLikeToPost
 };
