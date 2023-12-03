@@ -11,7 +11,20 @@ async function likePost(postId) {
         const likeButton = document.getElementById(`like-btn-${postId}`);
         const likeCountElement = document.getElementById(`like-count-${postId}`);
 
+        if (likeButton.dataset.isCoolingDown === 'true') {
+            return;
+        }
+        likeButton.dataset.isCoolingDown = 'true';
+        likeButton.disabled = true;
+
         const response = await fetch(`/like-post/${postId}`, { method: 'POST' });
+
+        if (response.status === 403) {
+            // User is not logged in, redirect to the login page
+            window.location.href = '/login';
+            return;
+        }
+
         if (response.ok) {
             let currentCount = parseInt(likeCountElement.innerText) || 0;
             if (likeButton.dataset.liked === 'true') {
@@ -21,8 +34,14 @@ async function likePost(postId) {
                 currentCount++;
                 likeButton.dataset.liked = 'true';
             }
-            likeCountElement.innerText = currentCount;
+            //likeCountElement.innerText = currentCount;
         }
+
+        setTimeout(() => {
+            likeButton.dataset.isCoolingDown = 'false';
+            likeButton.disabled = false;
+        }, 1500);
+
     } catch (err) {
         console.error('Error:', err);
     }
