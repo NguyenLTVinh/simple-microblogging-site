@@ -17,7 +17,7 @@ async function likePost(postId) {
         likeButton.dataset.isCoolingDown = 'true';
         likeButton.disabled = true;
 
-        const response = await fetch(`/like-post/${postId}`, { method: 'POST' });
+        const response = await fetch(`api/like-post/${postId}`, { method: 'POST' });
 
         if (response.status === 403) {
             // User is not logged in, redirect to the login page

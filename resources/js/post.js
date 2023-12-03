@@ -1,5 +1,5 @@
 function deletePost(postId) {
-    fetch(`/post/${postId}`, { method: 'DELETE' })
+    fetch(`/api/post/${postId}`, { method: 'DELETE' })
         .then(response => {
             if (response.ok) {
                 window.location.href = '/'; // Redirect to the main page

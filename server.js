@@ -94,7 +94,7 @@ app.get('/edit-post/:id', async (req, res) => {
 });
 
 // Handle logging out
-app.get('/logout', (req, res) => {
+app.get('/api/logout', (req, res) => {
     req.session.destroy((err) => {
         if(err) {
             console.error(err);
@@ -118,7 +118,7 @@ app.get('/api/like-counts', async (req, res) => {
 
 
 // Handle the registration form submission
-app.post('/register', async (req, res) => {
+app.post('/api/register', async (req, res) => {
     try {
         const { username, email, password } = req.body;
         // Validation empty fields and correct format
@@ -146,7 +146,7 @@ app.post('/register', async (req, res) => {
 });
 
 // Handle the login submission
-app.post('/login', async (req, res) => {
+app.post('/api/login', async (req, res) => {
     try {
         const { credential, password } = req.body; // credential can be either username or email
         if (!credential || !password) {
@@ -172,7 +172,7 @@ app.post('/login', async (req, res) => {
 });
 
 // Handle post creation
-app.post('/create-post', async (req, res) => {
+app.post('/api/create-post', async (req, res) => {
     try {
         const { content } = req.body;
         const userId = req.session.userId;
@@ -186,7 +186,7 @@ app.post('/create-post', async (req, res) => {
 });
 
 // Post update handling
-app.post('/edit-post/:id', async (req, res) => {
+app.post('/api/edit-post/:id', async (req, res) => {
     try {
         const postId = req.params.id;
         const { content } = req.body;
@@ -204,7 +204,7 @@ app.post('/edit-post/:id', async (req, res) => {
 });
 
 // Handle liking a post
-app.post('/like-post/:id', async (req, res) => {
+app.post('/api/like-post/:id', async (req, res) => {
     try {
         const postId = req.params.id;
         const userId = req.session.userId;
@@ -228,7 +228,7 @@ app.post('/like-post/:id', async (req, res) => {
 });
 
 // Handling post deletion
-app.delete('/post/:id', async (req, res) => {
+app.delete('/api/post/:id', async (req, res) => {
     try {
         const postId = req.params.id;
         const userId = req.session.userId;

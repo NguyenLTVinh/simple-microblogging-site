@@ -82,11 +82,13 @@ async function updatePost(postId, userId, newContent) {
 }
 
 async function deletePost(postId, userId) {
-  const query = 'DELETE FROM posts WHERE id = ? AND user_id = ?';
+  const child_query = 'DELETE FROM user_likes WHERE post_id = ?';
+  const parent_query = 'DELETE FROM posts WHERE id = ? AND user_id = ?';
   const values = [postId, userId];
 
   try {
-      await connPool.awaitQuery(query, values);
+      await connPool.awaitQuery(child_query, values);
+      await connPool.awaitQuery(parent_query, values);
   } catch (err) {
       console.error(err);
       throw err;
