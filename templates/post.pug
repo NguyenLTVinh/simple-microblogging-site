@@ -1,9 +1,11 @@
+include navbar.pug
 doctype html
 html(lang="en")
     head
         title Post
         script(src="/js/post.js")
     body
+        +navbar(userId)
         h1= post.content
         if userId === post.user_id
             form(action=`/edit-post/${post.id}`, method="get")

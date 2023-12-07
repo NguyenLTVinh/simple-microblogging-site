@@ -1,0 +1,26 @@
+include navbar.pug
+
+doctype html
+html(lang="en")
+    head
+        title My Posts
+        script(src="/js/main.js")
+    body
+        +navbar(userId)
+        h1 My Posts
+        form(method="get", action="/my-posts")
+            select(name="sort")
+                option(value="created_at") Newest
+                option(value="like_count") Most Liked
+            button(type="submit") Sort
+        .posts-list
+            each post in posts
+                .post
+                    p.post-content(onclick=`goToPost('${post.id}')`)= post.content
+                    p.post-author= post.username
+                    button(id=`like-btn-${post.id}` onclick=`likePost('${post.id}')` data-liked=post.liked) Like
+                    span(id=`like-count-${post.id}`)= post.like_count
+        if pagination.prev
+            a(href=`/my-posts?page=${pagination.prev}&sort=${sortBy}`) Previous
+        if pagination.next
+            a(href=`/my-posts?page=${pagination.next}&sort=${sortBy}`) Next

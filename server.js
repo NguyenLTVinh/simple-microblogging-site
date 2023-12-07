@@ -42,29 +42,62 @@ app.get('/', async (req, res) => {
             next: totalPosts > offset + limit ? page + 1 : null
         };
 
-        res.render('main', { posts, pagination });
+        res.render('main', { posts, pagination, userId });
     } catch (error) {
         console.error(error);
         res.status(500).render('main', { error: error.message });
     }
 });
+
+// My posts
+app.get('/my-posts', async (req, res) => {
+    if (!req.session.userId) {
+        return res.status(403).send('Forbidden');
+    }
+
+    try {
+        const page = parseInt(req.query.page) || 1;
+        const limit = 10;
+        const offset = (page - 1) * limit;
+        const sortBy = req.query.sort || 'created_at';
+        const userId = req.session.userId;
+        const posts = await data.getPostsByUserId(userId, limit, offset, sortBy);
+
+        const totalPosts = await data.getUserPostCount(userId);
+
+        const pagination = {
+            prev: page > 1 ? page - 1 : null,
+            next: totalPosts > offset + limit ? page + 1 : null,
+        };
+
+        res.render('myPosts', { posts, pagination, userId });
+    } catch (error) {
+        console.error(error);
+        res.status(500).render('error', { error: error.message });
+    }
+});
+
+
 // Display the registration form
 app.get('/register', (req, res) => {
-    res.render('register');
+    const userId = req.session.userId;
+    res.render('register', { userId });
 });
 
 // Display the login form
 app.get('/login', (req, res) => {
-    res.render('login');
+    const userId = req.session.userId;
+    res.render('login', { userId });
 });
 
 // Post creation form
 app.get('/create-post', (req, res) => {
+    const userId = req.session.userId;
     if (!req.session.userId) {
         // User is not logged in, redirect to login page
         res.redirect('/login');
     } else {
-        res.render('createPost');
+        res.render('createPost', { userId });
     }
 });
 

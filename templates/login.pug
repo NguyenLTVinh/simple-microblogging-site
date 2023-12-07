@@ -1,8 +1,10 @@
+include navbar.pug
 doctype html
 html(lang="en")
     head
         title Login
     body
+        +navbar(userId)
         h1 Login
         form(method="post", action="/api/login")
             div

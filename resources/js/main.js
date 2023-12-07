@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    setInterval(updateLikeCounts, 1000);
+    setInterval(updateLikeCounts, 500);
 });
 
 function goToPost(postId) {

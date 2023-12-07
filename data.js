@@ -69,6 +69,43 @@ async function getPosts(limit = 10, offset = 0, sortBy = 'created_at', userId = 
   }
 }
 
+async function getPostsByUserId(userId, limit = 10, offset = 0, sortBy = 'created_at') {
+  const validSortFields = ['created_at', 'like_count'];
+  if (!validSortFields.includes(sortBy)) {
+      sortBy = 'created_at'; // Default sort
+  }
+
+  const query = `
+      SELECT posts.*, users.username,
+             (SELECT COUNT(*) FROM user_likes WHERE post_id = posts.id) as like_count
+      FROM posts
+      JOIN users ON posts.user_id = users.id
+      WHERE posts.user_id = ?
+      ORDER BY ${sortBy} DESC
+      LIMIT ? OFFSET ?`;
+  const values = [userId, limit, offset];
+
+  try {
+      const posts = await connPool.awaitQuery(query, values);
+      return posts;
+  } catch (err) {
+      console.error(err);
+      throw err;
+  }
+}
+
+async function getUserPostCount(userId) {
+  const query = 'SELECT COUNT(*) AS count FROM posts WHERE user_id = ?';
+
+  try {
+      const results = await connPool.awaitQuery(query, [userId]);
+      return results[0].count;
+  } catch (err) {
+      console.error('Error in getUserPostCount:', err);
+      throw err;
+  }
+}
+
 async function updatePost(postId, userId, newContent) {
   const query = 'UPDATE posts SET content = ? WHERE id = ? AND user_id = ?';
   const values = [newContent, postId, userId];
@@ -196,4 +233,6 @@ module.exports = {
   checkLike,
   addLike,
   removeLike,
+  getPostsByUserId,
+  getUserPostCount
 };

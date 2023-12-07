@@ -1,9 +1,11 @@
+include navbar.pug
 doctype html
 html(lang="en")
     head
         title All Posts
         script(src="/js/main.js")
     body
+        +navbar(userId)
         h1 All Posts
         form(action="/create-post", method="get")
             button(type="submit") Create Post

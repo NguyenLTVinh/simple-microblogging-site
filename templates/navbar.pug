@@ -1,0 +1,11 @@
+mixin navbar(userId)
+    nav.navbar
+        if userId
+            a(href="/") Main Page
+            a(href="/my-profile") My Profile
+            a(href="/my-posts") My Posts
+            a(href="/api/logout") Log Out
+        else
+            a(href="/") Main Page
+            a(href="/register") Register
+            a(href="/login") Log In

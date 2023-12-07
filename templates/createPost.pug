@@ -1,8 +1,10 @@
+include navbar.pug
 doctype html
 html(lang="en")
     head
         title Create Post
     body
+        +navbar(userId)
         h1 Create New Post
         form(method="post", action="/api/create-post")
             textarea(name="content", required)
