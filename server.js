@@ -52,7 +52,7 @@ app.get('/', async (req, res) => {
 // My posts
 app.get('/my-posts', async (req, res) => {
     if (!req.session.userId) {
-        return res.status(403).send('Forbidden');
+        return res.status(403).send('You need to be logged in to view this page');
     }
 
     try {
@@ -73,7 +73,26 @@ app.get('/my-posts', async (req, res) => {
         res.render('myPosts', { posts, pagination, userId });
     } catch (error) {
         console.error(error);
-        res.status(500).render('error', { error: error.message });
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// My profile
+app.get('/my-profile', async (req, res) => {
+    if (!req.session.userId) {
+        return res.status(403).send('You need to be logged in to view this page');
+    }
+    const userId = req.session.userId;
+
+    try {
+        const user = await data.getUserById(req.session.userId);
+        if (!user) {
+            return res.status(404).send('User not found');
+        }
+        res.render('myProfile', { user, userId});
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
     }
 });
 
@@ -110,7 +129,7 @@ app.get('/post/:id', async (req, res) => {
         res.render('post', { post , userId});
     } catch (error) {
         console.error(error);
-        res.status(500).render('error', { error: error.message });
+        res.status(500).json({ error: error.message });
     }
 });
 
@@ -145,7 +164,7 @@ app.get('/api/like-counts', async (req, res) => {
         res.status(200).json(likeCounts);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Error fetching like counts' });
+        res.status(500).json({ error: error.message });
     }
 });
 
@@ -243,7 +262,7 @@ app.post('/api/like-post/:id', async (req, res) => {
         const userId = req.session.userId;
 
         if (!userId) {
-            return res.status(403).send('User not logged in');
+            return res.status(403).send('You need to be logged in to view this page');
         }
 
         const alreadyLiked = await data.checkLike(userId, postId);
@@ -256,7 +275,56 @@ app.post('/api/like-post/:id', async (req, res) => {
         res.status(200).send();
     } catch (error) {
         console.error(error);
-        res.status(500).send({ error: error.message });
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Update Profile.
+app.post('/api/update-profile', async (req, res) => {
+    if (!req.session.userId) {
+        return res.status(403).send('You need to be logged in to view this page');
+    }
+
+    const { username, email } = req.body;
+    //console.log(req.body);
+
+    try {
+        await data.updateUserProfile(req.session.userId, username, email);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Update password.
+app.post('/api/update-password', async (req, res) => {
+    if (!req.session.userId) {
+        return res.status(403).send('You need to be logged in to view this page');
+    }
+    
+    const userId = req.session.userId;
+
+    const { oldPassword, newPassword, confirmNewPassword } = req.body;
+
+    try {
+        // Fetch the current user's hashed password from the database
+        const currentUser = await data.getUserById(req.session.userId);
+        if (!currentUser) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+        if (newPassword !== confirmNewPassword) {
+            return res.render('myProfile', { user: currentUser, error: 'New passwords do not match', userId });
+        }
+        // Compare old password
+        const isMatch = await bcrypt.compare(oldPassword, currentUser.password);
+        if (!isMatch) {
+            return res.render('myProfile', { user: currentUser, error: 'Incorrect old password', userId });
+        }
+        // Hash new password
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+        await data.updateUserPassword(req.session.userId, hashedPassword);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
     }
 });
 
@@ -269,7 +337,7 @@ app.delete('/api/post/:id', async (req, res) => {
         res.status(200).send();
     } catch (error) {
         console.error(error);
-        res.status(500).send({ error: error.message });
+        res.status(500).json({ error: error.message });
     }
 });
 

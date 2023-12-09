@@ -220,6 +220,47 @@ async function getLikeCounts() {
   }
 }
 
+async function getUserById(userId) {
+  const query = 'SELECT id, username, email, password, created_at FROM users WHERE id = ?';
+
+  try {
+      const results = await connPool.awaitQuery(query, [userId]);
+      if (results.length > 0) {
+          return results[0];
+      } else {
+          return null;
+      }
+  } catch (err) {
+      console.error(err);
+      throw err;
+  }
+}
+
+
+async function updateUserProfile(userId, username, email) {
+  const query = 'UPDATE users SET username = ?, email = ? WHERE id = ?';
+  const values = [username, email, userId];
+
+  try {
+      await connPool.awaitQuery(query, values);
+  } catch (err) {
+      console.error(err);
+      throw err;
+  }
+}
+
+async function updateUserPassword(userId, newPasswordHash) {
+  const query = 'UPDATE users SET password = ? WHERE id = ?';
+  const values = [newPasswordHash, userId];
+
+  try {
+      await connPool.awaitQuery(query, values);
+  } catch (err) {
+      console.error(err);
+      throw err;
+  }
+}
+
 module.exports = { 
   addUser, 
   getUserByUsernameOrEmail, 
@@ -234,5 +275,8 @@ module.exports = {
   addLike,
   removeLike,
   getPostsByUserId,
-  getUserPostCount
+  getUserById,
+  getUserPostCount,
+  updateUserProfile,
+  updateUserPassword,
 };
