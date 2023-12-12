@@ -3,20 +3,23 @@ doctype html
 html(lang="en")
     head
         title Login
+        link(rel="stylesheet", href="/css/main.css")
+        link(rel="stylesheet", href="/css/navbar.css")
     body
         +navbar(userId)
         h1 Login
-        form(method="post", action="/api/login")
-            div
-                label(for="credential") Username or Email:
-                input(type="text", name="credential", required)
-            div
-                label(for="password") Password:
-                input(type="password", name="password", required)
-            div
-                button(type="submit") Login
-            if error
-                p.error #{error}
-        p
-            | Not a member yet? 
-            a(href="/register") Register here!
+        .auth-container
+            form.auth-form(method="post", action="/api/login")
+                div
+                    label(for="credential") Username or Email:
+                    input(type="text", name="credential", required)
+                div
+                    label(for="password") Password:
+                    input(type="password", name="password", required)
+                div
+                    button(type="submit") Login
+                if error
+                    p.error #{error}
+            p
+                | Not a member yet? 
+                a(href="/register") Register here!

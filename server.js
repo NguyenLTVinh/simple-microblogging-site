@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const pug = require('pug');
-const PORT = 4131;
+const PORT = 8000;
 const bcrypt = require('bcrypt');
 const data = require('./data');
 const session = require('express-session');
@@ -243,9 +243,6 @@ app.post('/api/edit-post/:id', async (req, res) => {
         const postId = req.params.id;
         const { content } = req.body;
         const userId = req.session.userId;
-        console.log(content);
-        console.log(postId);
-        console.log(userId);
         await data.updatePost(postId, userId, content);
         res.status(200);
         res.redirect('/');
@@ -286,10 +283,15 @@ app.post('/api/update-profile', async (req, res) => {
     }
 
     const { username, email } = req.body;
-    //console.log(req.body);
+    const userId = req.session.userId;
 
     try {
         await data.updateUserProfile(req.session.userId, username, email);
+        const user = await data.getUserById(req.session.userId);
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+        res.render('myProfile', { user, userId});
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: error.message });
@@ -308,21 +310,28 @@ app.post('/api/update-password', async (req, res) => {
 
     try {
         // Fetch the current user's hashed password from the database
-        const currentUser = await data.getUserById(req.session.userId);
-        if (!currentUser) {
+        const user = await data.getUserById(req.session.userId);
+        if (!user) {
             return res.status(404).json({ error: 'User not found' });
         }
+        if (!newPassword || newPassword === "") {
+            res.status(400);
+            return res.render('myProfile', { user, error: 'New password is empty', userId });
+        }
         if (newPassword !== confirmNewPassword) {
-            return res.render('myProfile', { user: currentUser, error: 'New passwords do not match', userId });
+            res.status(400);
+            return res.render('myProfile', { user, error: 'New passwords do not match', userId });
         }
         // Compare old password
-        const isMatch = await bcrypt.compare(oldPassword, currentUser.password);
-        if (!isMatch) {
-            return res.render('myProfile', { user: currentUser, error: 'Incorrect old password', userId });
+        const isMatch = await bcrypt.compare(oldPassword, user.password);
+        if (!isMatch) {  
+            res.status(400);
+            return res.render('myProfile', { user, error: 'Incorrect old password', userId });
         }
         // Hash new password
         const hashedPassword = await bcrypt.hash(newPassword, 10);
         await data.updateUserPassword(req.session.userId, hashedPassword);
+        res.render('myProfile', { user, userId});
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

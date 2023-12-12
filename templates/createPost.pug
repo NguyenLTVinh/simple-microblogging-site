@@ -3,9 +3,12 @@ doctype html
 html(lang="en")
     head
         title Create Post
+        link(rel="stylesheet", href="/css/main.css")
+        link(rel="stylesheet", href="/css/navbar.css")
     body
         +navbar(userId)
         h1 Create New Post
-        form(method="post", action="/api/create-post")
-            textarea(name="content", required)
-            button(type="submit") Post
+        .post-form-container
+            form.post-form(method="post", action="/api/create-post")
+                textarea(name="content", required, maxlength="4000")
+                button(type="submit") Post

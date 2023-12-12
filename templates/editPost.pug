@@ -3,10 +3,12 @@ doctype html
 html(lang="en")
     head
         title Edit Post
+        link(rel="stylesheet", href="/css/main.css")
+        link(rel="stylesheet", href="/css/navbar.css")
     body
         +navbar(userId)
         h1 Edit Post
-        form(method="post", action=`/api/edit-post/${post.id}`)
-            textarea(name="content", required)= post.content
-            button(type="submit") Update
-
+        .post-form-container
+            form.post-form(method="post", action=`/api/edit-post/${post.id}`)
+                textarea(name="content", required, maxlength="4000")= post.content
+                button(type="submit") Update

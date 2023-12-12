@@ -5,28 +5,31 @@ html(lang="en")
     head
         title My Profile
         link(rel="stylesheet", href="/css/myProfile.css")
+        link(rel="stylesheet", href="/css/main.css")
+        link(rel="stylesheet", href="/css/navbar.css")
         script(src="/js/profile.js")
     body
         +navbar(userId)
         h1 My Profile
-        div#profile-info
-            p Username: #{user.username}
-            p Email: #{user.email}
-            p Profile Created At: #{user.created_at}
-            button(onclick="editProfile()") Edit Profile
+        .profile-container
+            div#profile-info
+                p Username: #{user.username}
+                p Email: #{user.email}
+                p Profile Created At: #{user.created_at}
+                button(onclick="editProfile()") Edit Profile
+
+            div#edit-profile
+                form#profile-form(method="post", action="/api/update-profile")
+                    input(type="text", name="username", value=user.username)
+                    input(type="email", name="email", value=user.email)
+                    button(type="submit") Save Changes
+
+            div#edit-password
+                form#password-form(method="post", action="/api/update-password")
+                    input(type="password", name="oldPassword", placeholder="Old Password")
+                    input(type="password", name="newPassword", placeholder="New Password")
+                    input(type="password", name="confirmNewPassword", placeholder="Confirm New Password")
+                    button(type="submit") Update Password
             if error
                 p.error #{error}
-
-        div#edit-profile
-            form#profile-form(method="post", action="/api/update-profile")
-                input(type="text", name="username", value=user.username)
-                input(type="email", name="email", value=user.email)
-                button(type="submit") Save Changes
-
-        div#edit-password
-            form#password-form(method="post", action="/api/update-password")
-                input(type="password", name="oldPassword", placeholder="Old Password")
-                input(type="password", name="newPassword", placeholder="New Password")
-                input(type="password", name="confirmNewPassword", placeholder="Confirm New Password")
-                button(type="submit") Update Password
 

@@ -1,0 +1,286 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #EFF4F2;
+}
+
+h1 {
+    color: #005C5C;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 3em;
+    text-align: center;
+    padding: 0.5em 0;
+    margin: 0.5em
+}
+
+form {
+    text-align: center;
+    margin: 1.5em 0;
+}
+
+/* Styles for Main and My Posts Pages */
+.create-post-btn, .sort-options, .sort-btn {
+    padding: 0.8em 1.2em;
+    font-size: 1.1em;
+    margin-bottom: 1em;
+}
+
+.create-post-btn:hover, .sort-btn:hover, .sort-options:hover {
+    background-color: #679F4D;
+}
+
+.like-btn {
+    background-color: #88C057;
+    color: white;
+    border: none;
+    padding: 0.6em 1em;
+    margin: 0.3em;
+    border-radius: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.like-btn:hover {
+    background-color: #679F4D;
+}
+
+.posts-list {
+    width: 80%;
+    margin: auto;
+}
+
+.post {
+    background-color: #FFFFFF;
+    padding: 1em;
+    margin-bottom: 1.25em;
+    border-radius: 0.3em;
+    box-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.post:hover {
+    background-color: #E9F2E9;
+}
+
+.post-content {
+    color: #3A3D3F;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 0.6em;
+}
+
+.post-author, .date-time {
+    color: #679F4D;
+    font-style: italic;
+    margin-bottom: 0.6em;
+}
+
+a {
+    color: #005C5C;
+    text-decoration: none;
+    padding: 0.3em 0.6em;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #88C057;
+}
+
+.button-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination {
+    text-align: center;
+    margin: 2em 0;
+}
+
+.pagination a {
+    background-color: #88C057;
+    color: white;
+    padding: 0.6em 1em;
+    margin: 0.3em;
+    border-radius: 0.5em;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.pagination a:hover {
+    background-color: #679F4D;
+}
+
+/* Styles for Login and Register Pages */
+.auth-container {
+    width: 25vw;
+    margin: 2em auto;
+    padding: 2em;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 2vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.auth-form label {
+    font-size: 1em;
+    color: #4A4A4A;
+}
+
+.auth-form input {
+    font-size: 1em;
+    padding: 0.5em;
+    border: 1px solid #DADADA;
+    border-radius: 4px;
+    outline: none;
+}
+
+.auth-form input:focus {
+    border-color: #679F4D;
+}
+
+.auth-form button {
+    padding: 0.6em 1em;
+    background-color: #005C5C;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.auth-form button:hover {
+    background-color: #679F4D;
+}
+
+.error {
+    color: #D9534F;
+    font-size: 0.9em;
+    margin-top: 0.5em;
+}
+
+.auth-form p {
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.auth-form a {
+    color: #005C5C;
+    text-decoration: none;
+}
+
+.auth-form a:hover {
+    text-decoration: underline;
+}
+
+/* Styles for Create and Edit Post Pages */
+.post-form-container {
+    width: 500px;
+    max-width: 100%;
+    margin: 2em auto;
+    padding: 2em;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.post-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.post-form textarea {
+    width: calc(100% - 0.15em);
+    height: 200px;
+    padding: 0.5em;
+    border: 1px solid #DADADA;
+    border-radius: 4px;
+    resize: vertical;
+    font-size: 1em;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.post-form button {
+    padding: 0.6em 1em;
+    width: 100%;
+    background-color: #005C5C;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.post-form button:hover {
+    background-color: #679F4D;
+}
+
+/* Styles for Post Page */
+.post-content-container {
+    width: 80%;
+    max-width: 700px;
+    margin: 2em auto;
+    padding: 2em;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.post-paragraph {
+    text-align: left;
+    width: 100%;
+    margin-bottom: 2em;
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+.post-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    align-items: center;
+}
+
+.post-buttons button,
+.post-buttons form button {
+    padding: 0.6em 1em;
+    background-color: #005C5C;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 1em;
+    line-height: normal;
+    height: 40px;
+}
+
+.post-buttons button:hover,
+.post-buttons form button:hover {
+    background-color: #679F4D;
+}
+
+@media screen and (max-width: 768px) {
+    .posts-list {
+        width: 95%;
+    }
+}

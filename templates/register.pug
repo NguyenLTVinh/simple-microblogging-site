@@ -3,23 +3,26 @@ doctype html
 html(lang="en")
     head
         title Register
+        link(rel="stylesheet", href="/css/main.css")
+        link(rel="stylesheet", href="/css/navbar.css")
     body
         +navbar(userId)
         h1 Register
-        form(method="post", action="/api/register")
-            div
-                label(for="username") Username:
-                input(type="text", name="username", required)
-            div
-                label(for="email") Email:
-                input(type="email", name="email", required)
-            div
-                label(for="password") Password:
-                input(type="password", name="password", required)
-            div
-                button(type="submit") Register
-            if error
-                p.error #{error}
-        p
-            | Already registed? 
-            a(href="/login") Go to login page.
+        .auth-container
+            form.auth-form(method="post", action="/api/register")
+                div
+                    label(for="username") Username:
+                    input(type="text", name="username", required)
+                div
+                    label(for="email") Email:
+                    input(type="email", name="email", required)
+                div
+                    label(for="password") Password:
+                    input(type="password", name="password", required)
+                div
+                    button(type="submit") Register
+                if error
+                    p.error #{error}
+            p
+                | Already registered? 
+                a(href="/login") Go to login page.
