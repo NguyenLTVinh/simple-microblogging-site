@@ -28,6 +28,6 @@ html(lang="en")
         if pagination.prev || pagination.next
             .pagination
                 if pagination.prev
-                    a(href=`/?page=${pagination.prev}`) Previous
+                    a(href=`/?page=${pagination.prev}&sort=${sortBy}`) Previous
                 if pagination.next
-                    a(href=`/?page=${pagination.next}`) Next
+                    a(href=`/?page=${pagination.next}&sort=${sortBy}`) Next

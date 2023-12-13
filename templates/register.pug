@@ -3,22 +3,22 @@ doctype html
 html(lang="en")
     head
         title Register
-        link(rel="stylesheet", href="/css/main.css")
-        link(rel="stylesheet", href="/css/navbar.css")
+        link(rel="stylesheet" href="/css/main.css")
+        link(rel="stylesheet" href="/css/navbar.css")
     body
         +navbar(userId)
         h1 Register
         .auth-container
-            form.auth-form(method="post", action="/api/register")
+            form.auth-form(method="post" action="/api/register")
                 div
                     label(for="username") Username:
-                    input(type="text", name="username", required)
+                    input(type="text" name="username", required)
                 div
                     label(for="email") Email:
-                    input(type="email", name="email", required)
+                    input(type="email" name="email", required)
                 div
                     label(for="password") Password:
-                    input(type="password", name="password", required)
+                    input(type="password" name="password", required)
                 div
                     button(type="submit") Register
                 if error

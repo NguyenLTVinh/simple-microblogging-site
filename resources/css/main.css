@@ -20,13 +20,17 @@ form {
 }
 
 /* Styles for Main and My Posts Pages */
-.create-post-btn, .sort-options, .sort-btn {
+.create-post-btn,
+.sort-options,
+.sort-btn {
     padding: 0.8em 1.2em;
     font-size: 1.1em;
     margin-bottom: 1em;
 }
 
-.create-post-btn:hover, .sort-btn:hover, .sort-options:hover {
+.create-post-btn:hover,
+.sort-btn:hover,
+.sort-options:hover {
     background-color: #679F4D;
 }
 
@@ -71,7 +75,8 @@ form {
     margin-bottom: 0.6em;
 }
 
-.post-author, .date-time {
+.post-author,
+.date-time {
     color: #679F4D;
     font-style: italic;
     margin-bottom: 0.6em;

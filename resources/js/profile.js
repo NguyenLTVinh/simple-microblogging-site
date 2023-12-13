@@ -1,12 +1,12 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const profileForm = document.getElementById('profile-form');
     const passwordForm = document.getElementById('password-form');
 
-    profileForm.addEventListener('submit', async function(e) {
+    profileForm.addEventListener('submit', async function (e) {
         await submitForm(profileForm, '/api/update-profile');
     });
 
-    passwordForm.addEventListener('submit', async function(e) {
+    passwordForm.addEventListener('submit', async function (e) {
         await submitForm(passwordForm, '/api/update-password');
     });
 });

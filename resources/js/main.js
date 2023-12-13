@@ -2,18 +2,18 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(updateLikeCounts, 500);
     var likeButtons = document.querySelectorAll('[id^="like-btn-"]');
     // Code below prevents going to post when clicked on like button
-    likeButtons.forEach(function(button) {
-        button.addEventListener('click', function(event) {
+    likeButtons.forEach(function (button) {
+        button.addEventListener('click', function (event) {
             likePost(this.id.replace('like-btn-', ''));
             event.stopPropagation();
         });
     });
     // Formatting the time
     var dateElements = document.querySelectorAll('.date-time');
-        dateElements.forEach(function(element) {
-            var date = new Date(element.textContent);
-            element.textContent = date.toLocaleString();
-        });
+    dateElements.forEach(function (element) {
+        var date = new Date(element.textContent);
+        element.textContent = date.toLocaleString();
+    });
 });
 
 function goToPost(postId) {

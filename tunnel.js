@@ -9,7 +9,7 @@ async function start_server(BRIDGE_HOST, HOST, PORT) {
     var username = (await prompt.get("UMN Username: "))["UMN Username: "]
 
     const tunnelOptions = {
-        autoClose:false
+        autoClose: false
     }
 
     const sshOptions = {
@@ -19,7 +19,7 @@ async function start_server(BRIDGE_HOST, HOST, PORT) {
             type: 'keyboard-interactive',
             username: username,
             prompt: async (name, instructions, instructionsLang, prompts, finish) => {
-                const result = await Promise.all(prompts.map(async e=>{
+                const result = await Promise.all(prompts.map(async e => {
                     console.log(e)
                     // if they ask for a password -- give it to them
                     const schema = {
@@ -43,10 +43,10 @@ async function start_server(BRIDGE_HOST, HOST, PORT) {
     };
 
     const forwardOptions = {
-        dstAddr:HOST,
-        dstPort:PORT
+        dstAddr: HOST,
+        dstPort: PORT
     }
-   
+
     let [server, client] = await tunnel.createTunnel(tunnelOptions, serverOptions, sshOptions, forwardOptions);
 
     // Example how to get the server port information.

@@ -3,19 +3,19 @@ doctype html
 html(lang="en")
     head
         title Login
-        link(rel="stylesheet", href="/css/main.css")
-        link(rel="stylesheet", href="/css/navbar.css")
+        link(rel="stylesheet" href="/css/main.css")
+        link(rel="stylesheet" href="/css/navbar.css")
     body
         +navbar(userId)
         h1 Login
         .auth-container
-            form.auth-form(method="post", action="/api/login")
+            form.auth-form(method="post" action="/api/login")
                 div
                     label(for="credential") Username or Email:
-                    input(type="text", name="credential", required)
+                    input(type="text" name="credential", required)
                 div
                     label(for="password") Password:
-                    input(type="password", name="password", required)
+                    input(type="password" name="password", required)
                 div
                     button(type="submit") Login
                 if error

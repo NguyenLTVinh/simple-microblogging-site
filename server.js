@@ -42,7 +42,7 @@ app.get('/', async (req, res) => {
             next: totalPosts > offset + limit ? page + 1 : null
         };
 
-        res.render('main', { posts, pagination, userId });
+        res.render('main', { posts, pagination, userId, sortBy });
     } catch (error) {
         console.error(error);
         res.status(500).render('main', { error: error.message });
@@ -70,7 +70,7 @@ app.get('/my-posts', async (req, res) => {
             next: totalPosts > offset + limit ? page + 1 : null,
         };
 
-        res.render('myPosts', { posts, pagination, userId });
+        res.render('myPosts', { posts, pagination, userId, sortBy });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: error.message });
@@ -89,7 +89,7 @@ app.get('/my-profile', async (req, res) => {
         if (!user) {
             return res.status(404).send('User not found');
         }
-        res.render('myProfile', { user, userId});
+        res.render('myProfile', { user, userId });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: error.message });
@@ -126,7 +126,7 @@ app.get('/post/:id', async (req, res) => {
         const postId = req.params.id;
         const post = await data.getPostById(postId);
         const userId = req.session.userId;
-        res.render('post', { post , userId});
+        res.render('post', { post, userId });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: error.message });
@@ -148,7 +148,7 @@ app.get('/edit-post/:id', async (req, res) => {
 // Handle logging out
 app.get('/api/logout', (req, res) => {
     req.session.destroy((err) => {
-        if(err) {
+        if (err) {
             console.error(err);
             return res.redirect('/');
         }
@@ -160,7 +160,7 @@ app.get('/api/logout', (req, res) => {
 // Get the like of a post
 app.get('/api/like-counts', async (req, res) => {
     try {
-        const likeCounts = await data.getLikeCounts(); 
+        const likeCounts = await data.getLikeCounts();
         res.status(200).json(likeCounts);
     } catch (error) {
         console.error(error);
@@ -291,7 +291,7 @@ app.post('/api/update-profile', async (req, res) => {
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
         }
-        res.render('myProfile', { user, userId});
+        res.render('myProfile', { user, userId });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: error.message });
@@ -303,7 +303,7 @@ app.post('/api/update-password', async (req, res) => {
     if (!req.session.userId) {
         return res.status(403).send('You need to be logged in to view this page');
     }
-    
+
     const userId = req.session.userId;
 
     const { oldPassword, newPassword, confirmNewPassword } = req.body;
@@ -324,14 +324,14 @@ app.post('/api/update-password', async (req, res) => {
         }
         // Compare old password
         const isMatch = await bcrypt.compare(oldPassword, user.password);
-        if (!isMatch) {  
+        if (!isMatch) {
             res.status(400);
             return res.render('myProfile', { user, error: 'Incorrect old password', userId });
         }
         // Hash new password
         const hashedPassword = await bcrypt.hash(newPassword, 10);
         await data.updateUserPassword(req.session.userId, hashedPassword);
-        res.render('myProfile', { user, userId});
+        res.render('myProfile', { user, userId });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
