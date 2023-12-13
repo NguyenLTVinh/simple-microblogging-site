@@ -8,7 +8,9 @@
 
 ## Introduction
 This is Simple Microblogging Site, a place where you can create, edit, and delete posts, as well as interact with them. In addition, fully functional user specific features are also implemented, including creating an account, loggin in, changing user information and password.
+
 **Important: Please refer to the sections above to see which features you can and can't access without logging into an account**
+
 **To test most of the functionalities, please use the following account:**
 - Username: ViralVirtuoso
 - Password: Hello.123
