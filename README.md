@@ -14,6 +14,7 @@ This is Simple Microblogging Site, a place where you can create, edit, and delet
 **To test most of the functionalities, please use the following account:**
 - Username: ViralVirtuoso
 - Password: Hello.123
+
 The above account has a lot of posts that was artificially injected into the database with its user id. You can test the full functionalities of the **My Posts** page that way.
 
 
