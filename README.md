@@ -17,7 +17,6 @@ This is Simple Microblogging Site, a place where you can create, edit, and delet
 
 The above account has a lot of posts that was artificially injected into the database with its user id. You can test the full functionalities of the **My Posts** page that way.
 
-
 ## Account Creation and User Supports
 Here is how you get started!
 
