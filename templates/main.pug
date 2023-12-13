@@ -3,15 +3,15 @@ doctype html
 html(lang="en")
     head
         title All Posts
-        link(rel="stylesheet", href="/css/main.css")
-        link(rel="stylesheet", href="/css/navbar.css")
+        link(rel="stylesheet" href="/css/main.css")
+        link(rel="stylesheet" href="/css/navbar.css")
         script(src="/js/main.js")
     body
         +navbar(userId)
         h1 All Posts
-        form(action="/create-post", method="get")
+        form(action="/create-post" method="get")
             button.create-post-btn(type="submit") Create Post
-        form(method="get", action="/")
+        form(method="get" action="/")
             select.sort-options(name="sort")
                 option(value="created_at") Newest
                 option(value="like_count") Most Liked
