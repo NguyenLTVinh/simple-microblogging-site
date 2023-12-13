@@ -12,6 +12,8 @@ html(lang="en")
         h1= firstSentence
         .post-content-container
             p.post-paragraph= post.content
+            p.post-author Posted by #{post.username} at 
+                span.date-time #{post.created_at}
             if userId === post.user_id
                 .post-buttons
                     form(action=`/edit-post/${post.id}`, method="get")

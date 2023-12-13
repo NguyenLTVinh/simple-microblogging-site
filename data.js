@@ -137,7 +137,12 @@ async function deletePost(postId, userId) {
 }
 
 async function getPostById(postId) {
-    const query = 'SELECT * FROM posts WHERE id = ?';
+    const query = `
+        SELECT posts.*, users.username
+        FROM posts
+        JOIN users ON posts.user_id = users.id
+        WHERE posts.id = ?
+    `;
     const values = [postId];
 
     try {

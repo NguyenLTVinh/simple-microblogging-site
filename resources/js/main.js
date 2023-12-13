@@ -14,6 +14,15 @@ document.addEventListener("DOMContentLoaded", () => {
         var date = new Date(element.textContent);
         element.textContent = date.toLocaleString();
     });
+    // To save sort options by storing in session storage
+    const sortOptions = document.querySelector('.sort-options');
+    const savedSortValue = sessionStorage.getItem('selectedSort');
+    if (savedSortValue) {
+        sortOptions.value = savedSortValue;
+    }
+    sortOptions.addEventListener('change', function() {
+        sessionStorage.setItem('selectedSort', this.value);
+    });
 });
 
 function goToPost(postId) {

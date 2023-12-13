@@ -11,7 +11,14 @@
     align-items: center;
 }
 
-.profile-info,
+#profile-info {
+    width: 100%;
+    margin-bottom: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #edit-profile,
 #edit-password {
     width: 100%;
@@ -21,7 +28,7 @@
     align-items: center;
 }
 
-.profile-info p,
+#profile-info p,
 #edit-profile form p,
 #edit-password form p {
     text-align: left;

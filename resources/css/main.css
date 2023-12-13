@@ -51,6 +51,8 @@ form {
 
 .posts-list {
     width: 80%;
+    max-width: 100%;
+    min-width: 400px;
     margin: auto;
 }
 
@@ -119,7 +121,9 @@ a:hover {
 
 /* Styles for Login and Register Pages */
 .auth-container {
-    width: 25vw;
+    width: 25%;
+    max-width: 100%;
+    min-width: 400px;
     margin: 2em auto;
     padding: 2em;
     background-color: #FFFFFF;
@@ -190,8 +194,9 @@ a:hover {
 
 /* Styles for Create and Edit Post Pages */
 .post-form-container {
-    width: 500px;
+    width: 25%;
     max-width: 100%;
+    min-width: 400px;
     margin: 2em auto;
     padding: 2em;
     background-color: #FFFFFF;
@@ -284,8 +289,11 @@ a:hover {
     background-color: #679F4D;
 }
 
-@media screen and (max-width: 768px) {
-    .posts-list {
-        width: 95%;
+@media screen and (max-width: 600px) {
+    .posts-list
+    .auth-container
+    .post-form-container
+    .post-content-container {
+        min-width: 90%;
     }
 }
