@@ -270,6 +270,49 @@ async function updateUserPassword(userId, newPasswordHash) {
     }
 }
 
+async function getCommentsByPostId(postId) {
+    const query = `
+        SELECT comments.*, users.username
+        FROM comments
+        JOIN users ON comments.user_id = users.id
+        WHERE comments.post_id = ?
+        ORDER BY comments.created_at ASC
+    `;
+    const values = [postId];
+
+    try {
+        const results = await connPool.awaitQuery(query, values);
+        return results || [];
+    } catch (err) {
+        console.error(err);
+        throw err;
+    }
+}
+
+async function addComment(postId, userId, content) {
+    const query = 'INSERT INTO comments (post_id, user_id, content) VALUES (?, ?, ?)';
+    const values = [postId, userId, content];
+
+    try {
+        await connPool.awaitQuery(query, values);
+    } catch (err) {
+        console.error(err);
+        throw err;
+    }
+}
+
+async function deleteComment(commentId, userId) {
+    const query = 'DELETE FROM comments WHERE id = ? AND user_id = ?';
+    const values = [commentId, userId];
+
+    try {
+        await connPool.awaitQuery(query, values);
+    } catch (err) {
+        console.error(err);
+        throw err;
+    }
+}
+
 module.exports = {
     addUser,
     getUserByUsernameOrEmail,
@@ -288,4 +331,7 @@ module.exports = {
     getUserPostCount,
     updateUserProfile,
     updateUserPassword,
+    getCommentsByPostId,
+    addComment,
+    deleteComment
 };

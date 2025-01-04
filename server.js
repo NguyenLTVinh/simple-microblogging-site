@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const pug = require('pug');
-const PORT = 4131;
+const PORT = 3000;
 const bcrypt = require('bcrypt');
 const data = require('./data');
 const session = require('express-session');
@@ -125,8 +125,9 @@ app.get('/post/:id', async (req, res) => {
     try {
         const postId = req.params.id;
         const post = await data.getPostById(postId);
+        const comments = await data.getCommentsByPostId(postId);
         const userId = req.session.userId;
-        res.render('post', { post, userId });
+        res.render('post', { post, comments, userId });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: error.message });
@@ -343,6 +344,54 @@ app.delete('/api/post/:id', async (req, res) => {
         const postId = req.params.id;
         const userId = req.session.userId;
         await data.deletePost(postId, userId);
+        res.status(200).send();
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Comment section
+app.get('/api/comments/:postId', async (req, res) => {
+    try {
+        const postId = req.params.postId;
+        const comments = await data.getCommentsByPostId(postId);
+        res.status(200).json(comments);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.post('/api/comments/:postId', async (req, res) => {
+    try {
+        const postId = req.params.postId;
+        const { content } = req.body;
+        const userId = req.session.userId;
+
+        if (!userId) {
+            return res.status(403).send('You need to be logged in to comment');
+        }
+
+        await data.addComment(postId, userId, content);
+
+        res.redirect(`/post/${postId}`);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Failed to submit comment');
+    }
+});
+
+app.delete('/api/comments/:id', async (req, res) => {
+    try {
+        const commentId = req.params.id;
+        const userId = req.session.userId;
+
+        if (!userId) {
+            return res.status(403).send('You need to be logged in to delete comments');
+        }
+
+        await data.deleteComment(commentId, userId);
         res.status(200).send();
     } catch (error) {
         console.error(error);

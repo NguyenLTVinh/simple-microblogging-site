@@ -19,3 +19,29 @@ html(lang="en")
                     form(action=`/edit-post/${post.id}`, method="get")
                         button(type="submit") Edit
                     button(onclick=`deletePost('${post.id}')`) Delete
+
+        // Comments section
+        .comments-section
+            h2 Comments
+            if comments && comments.length > 0
+                ul.comments-list
+                    each comment in comments
+                        li.comment(id=`comment-${comment.id}`)
+                            p.comment-content= comment.content
+                            p.comment-author By #{comment.username} at 
+                                span.date-time #{comment.created_at}
+                            if userId === comment.user_id
+                                button(onclick=`deleteComment('${comment.id}')`) Delete
+            else
+                p No comments yet. Be the first to comment!
+
+        // Add comment form
+        if userId
+            form#addCommentForm(action=`/api/comments/${post.id}`, method="post")
+                textarea(name="content" placeholder="Add your comment..." required)
+                button(type="submit") Post Comment
+        else
+            .login-message-container
+                p You need to 
+                    a(href="/login") log in 
+                    | to comment.
