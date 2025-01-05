@@ -2,11 +2,12 @@ body {
     font-family: 'Merriweather', serif;
     margin: 0;
     padding: 0;
-    background-color: #FAFAFA;
+    background-color: #121212;
+    color: #E0E0E0;
 }
 
 h1 {
-    color: #333333;
+    color: #E0E0E0;
     font-family: 'Playfair Display', serif;
     font-size: 3em;
     text-align: center;
@@ -30,20 +31,20 @@ form button {
     padding: 0.8em 1.2em;
     font-size: 1.1em;
     margin-bottom: 1em;
-    border: 1px solid #CCCCCC;
-    background-color: #FFFFFF;
-    color: #333333;
+    border: 1px solid #444444;
+    background-color: #1E1E1E;
+    color: #E0E0E0;
     font-family: 'Merriweather', serif;
 }
 
 .create-post-btn:hover,
 .sort-btn:hover,
 .sort-options:hover {
-    background-color: #EAEAEA;
+    background-color: #333333;
 }
 
 .like-btn {
-    background-color: #555555;
+    background-color: #444444;
     color: white;
     border: none;
     padding: 0.6em 1em;
@@ -55,7 +56,7 @@ form button {
 }
 
 .like-btn:hover {
-    background-color: #333333;
+    background-color: #222222;
 }
 
 .like-btn[data-liked="false"] i {
@@ -63,15 +64,15 @@ form button {
 }
 
 .like-btn[data-liked="true"] i {
-    color: #ffd700;
+    color: #FFD700;
 }
 
 .like-btn[data-liked="true"]:hover i {
-    color: #f0c419;
+    color: #F0C419;
 }
 
 .like-btn[data-liked="false"]:hover i {
-    color: #cccccc;
+    color: #AAAAAA;
 }
 
 .posts-list {
@@ -82,21 +83,21 @@ form button {
 }
 
 .post {
-    background-color: #FFFFFF;
+    background-color: #1E1E1E;
     padding: 1.5em;
     margin-bottom: 1.5em;
     border-radius: 0.3em;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
     transition: background-color 0.3s;
     cursor: pointer;
 }
 
 .post:hover {
-    background-color: #F9F9F9;
+    background-color: #292929;
 }
 
 .post-content {
-    color: #333333;
+    color: #E0E0E0;
     font-weight: bold;
     font-size: 1.2em;
     margin-bottom: 0.6em;
@@ -105,20 +106,20 @@ form button {
 
 .post-author,
 .date-time {
-    color: #555555;
+    color: #AAAAAA;
     font-style: italic;
     margin-bottom: 0.6em;
 }
 
 a {
-    color: #0056B3;
+    color: #66BBFF;
     text-decoration: none;
     padding: 0.3em 0.6em;
     transition: color 0.3s;
 }
 
 a:hover {
-    color: #333333;
+    color: #E0E0E0;
 }
 
 .button-disabled {
@@ -132,7 +133,7 @@ a:hover {
 }
 
 .pagination a {
-    background-color: #555555;
+    background-color: #444444;
     color: white;
     padding: 0.6em 1em;
     margin: 0.3em;
@@ -142,7 +143,7 @@ a:hover {
 }
 
 .pagination a:hover {
-    background-color: #333333;
+    background-color: #222222;
 }
 
 /* Styles for Login and Register Pages */
@@ -152,9 +153,9 @@ a:hover {
     min-width: 400px;
     margin: 2em auto;
     padding: 2em;
-    background-color: #FFFFFF;
+    background-color: #1E1E1E;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -168,26 +169,28 @@ a:hover {
 
 .auth-form label {
     font-size: 1em;
-    color: #555555;
+    color: #E0E0E0;
     font-family: 'Merriweather', serif;
 }
 
 .auth-form input {
     font-size: 1em;
     padding: 0.5em;
-    border: 1px solid #CCCCCC;
+    border: 1px solid #444444;
     border-radius: 4px;
     outline: none;
     font-family: 'Merriweather', serif;
+    background-color: #333333;
+    color: #E0E0E0;
 }
 
 .auth-form input:focus {
-    border-color: #555555;
+    border-color: #AAAAAA;
 }
 
 .auth-form button {
     padding: 0.6em 1em;
-    background-color: #333333;
+    background-color: #222222;
     color: white;
     border: none;
     border-radius: 4px;
@@ -196,11 +199,11 @@ a:hover {
 }
 
 .auth-form button:hover {
-    background-color: #555555;
+    background-color: #444444;
 }
 
 .error {
-    color: #D9534F;
+    color: #FF6B6B;
     font-size: 0.9em;
     margin-top: 0.5em;
 }
@@ -208,12 +211,12 @@ a:hover {
 .auth-form p {
     text-align: center;
     font-size: 0.9em;
-    color: #333333;
+    color: #AAAAAA;
     font-family: 'Merriweather', serif;
 }
 
 .auth-form a {
-    color: #0056B3;
+    color: #66BBFF;
     text-decoration: none;
 }
 
@@ -228,9 +231,9 @@ a:hover {
     min-width: 400px;
     margin: 2em auto;
     padding: 2em;
-    background-color: #FFFFFF;
+    background-color: #1E1E1E;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -247,18 +250,19 @@ a:hover {
     width: 100%;
     height: 200px;
     padding: 0.5em;
-    border: 1px solid #CCCCCC;
+    border: 1px solid #444444;
     border-radius: 4px;
     resize: vertical;
     font-size: 1em;
     font-family: 'Merriweather', serif;
-    box-sizing: border-box;
+    background-color: #333333;
+    color: #E0E0E0;
 }
 
 .post-form button {
     padding: 0.6em 1em;
     width: 100%;
-    background-color: #333333;
+    background-color: #222222;
     color: white;
     border: none;
     border-radius: 4px;
@@ -267,7 +271,7 @@ a:hover {
 }
 
 .post-form button:hover {
-    background-color: #555555;
+    background-color: #444444;
 }
 
 /* Styles for Post Page */
@@ -276,9 +280,9 @@ a:hover {
     max-width: 700px;
     margin: 2em auto;
     padding: 2em;
-    background-color: #FFFFFF;
+    background-color: #1E1E1E;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -290,7 +294,7 @@ a:hover {
     margin-bottom: 2em;
     font-size: 1em;
     line-height: 1.8;
-    color: #333333;
+    color: #E0E0E0;
     font-family: 'Merriweather', serif;
 }
 
@@ -326,13 +330,13 @@ a:hover {
 .comment-content {
     font-size: 1em;
     margin-bottom: 0.5em;
-    color: #333333;
+    color: #E0E0E0;
     font-family: 'Merriweather', serif;
 }
 
 .comment-author {
     font-size: 0.9em;
-    color: #555555;
+    color: #AAAAAA;
     font-style: italic;
     margin-bottom: 0.5em;
     font-family: 'Merriweather', serif;
@@ -340,7 +344,7 @@ a:hover {
 
 .comment button {
     padding: 0.6em 1.2em;
-    background-color: #333333;
+    background-color: #222222;
     color: white;
     border: none;
     border-radius: 4px;
@@ -349,7 +353,7 @@ a:hover {
 }
 
 .comment button:hover {
-    background-color: #555555;
+    background-color: #444444;
 }
 
 #addCommentForm {
@@ -366,17 +370,18 @@ a:hover {
     max-width: 700px;
     height: 150px;
     padding: 0.5em;
-    border: 1px solid #CCCCCC;
+    border: 1px solid #444444;
     border-radius: 4px;
     resize: vertical;
     font-size: 1em;
     font-family: 'Merriweather', serif;
-    box-sizing: border-box;
+    background-color: #333333;
+    color: #E0E0E0;
 }
 
 #addCommentForm button {
     padding: 0.6em 1.2em;
-    background-color: #333333;
+    background-color: #222222;
     color: white;
     border: none;
     border-radius: 4px;
@@ -385,12 +390,12 @@ a:hover {
 }
 
 #addCommentForm button:hover {
-    background-color: #555555;
+    background-color: #444444;
 }
 
 .comments-section p {
     font-size: 1em;
-    color: #7F8C8D;
+    color: #AAAAAA;
     margin: 1em 0;
     text-align: center;
     font-family: 'Merriweather', serif;
@@ -408,13 +413,13 @@ a:hover {
 .login-message-container p {
     margin: 0;
     font-family: 'Merriweather', serif;
-    color: #333333;
+    color: #E0E0E0;
 }
 
 .post-buttons button,
 .post-buttons form button {
     padding: 0.6em 1em;
-    background-color: #333333;
+    background-color: #222222;
     color: white;
     border: none;
     border-radius: 4px;
@@ -428,7 +433,7 @@ a:hover {
 
 .post-buttons button:hover,
 .post-buttons form button:hover {
-    background-color: #555555;
+    background-color: #444444;
 }
 
 @media screen and (max-width: 600px) {
@@ -445,9 +450,9 @@ a:hover {
     max-width: 500px;
     margin: 2em auto;
     padding: 2em;
-    background-color: #FFFFFF;
+    background-color: #1E1E1E;
     border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -478,13 +483,13 @@ a:hover {
     margin-bottom: 0.5em;
     font-size: 1em;
     line-height: 1.8;
-    color: #333333;
+    color: #E0E0E0;
     font-family: 'Merriweather', serif;
 }
 
 button {
     padding: 0.6em 1em;
-    background-color: #333333;
+    background-color: #222222;
     color: white;
     border: none;
     border-radius: 4px;
@@ -496,7 +501,7 @@ button {
 }
 
 button:hover {
-    background-color: #555555;
+    background-color: #444444;
 }
 
 input[type="text"],
@@ -504,22 +509,24 @@ input[type="email"],
 input[type="password"] {
     width: 100%;
     padding: 0.5em;
-    border: 1px solid #CCCCCC;
+    border: 1px solid #444444;
     border-radius: 4px;
     margin-bottom: 1em;
     font-size: 1em;
     font-family: 'Merriweather', serif;
+    background-color: #333333;
+    color: #E0E0E0;
 }
 
 .error {
-    color: #D9534F;
+    color: #FF6B6B;
     font-size: 0.9em;
     margin-top: 0.5em;
 }
 
 .navbar {
-    background-color: #FFFFFF;
-    border-bottom: 1px solid #CCCCCC;
+    background-color: #1E1E1E;
+    border-bottom: 1px solid #444444;
     overflow: hidden;
     font-family: 'Merriweather', serif;
     padding: 1em;
@@ -529,7 +536,7 @@ input[type="password"] {
 }
 
 .navbar a {
-    color: #333333;
+    color: #E0E0E0;
     text-align: center;
     padding: 0.875em 1.5em;
     text-decoration: none;
@@ -549,8 +556,8 @@ input[type="password"] {
 }
 
 .navbar a:hover {
-    background-color: #EAEAEA;
-    color: #555555;
+    background-color: #292929;
+    color: #AAAAAA;
 }
 
 @media screen and (max-width: 600px) {
