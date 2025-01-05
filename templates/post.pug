@@ -8,7 +8,7 @@ html(lang="en")
         script(src="/js/post.js")
     body
         +navbar(userId)
-        - var firstSentence = post.content.split(".")[0] + '...';
+        - var firstSentence = post.content.split(/(?<=[.!?])\s+/)[0];
         h1= firstSentence
         .post-content-container
             p.post-paragraph= post.content

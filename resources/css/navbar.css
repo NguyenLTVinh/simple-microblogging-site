@@ -1,7 +1,8 @@
 .navbar {
-    background-color: #333;
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #CCCCCC;
     overflow: hidden;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Merriweather', serif;
     padding: 1em;
     display: flex;
     justify-content: space-between;
@@ -9,13 +10,14 @@
 }
 
 .navbar a {
-    color: white;
+    color: #333333;
     text-align: center;
     padding: 0.875em 1.5em;
     text-decoration: none;
     transition: background-color 0.3s, color 0.3s;
     border-radius: 4px;
     font-weight: bold;
+    font-family: 'Merriweather', serif;
 }
 
 .navbar-links {
@@ -28,8 +30,8 @@
 }
 
 .navbar a:hover {
-    background-color: #88C057;
-    color: #333;
+    background-color: #EAEAEA;
+    color: #555555;
 }
 
 @media screen and (max-width: 600px) {
