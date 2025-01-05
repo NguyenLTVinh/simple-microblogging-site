@@ -3,11 +3,11 @@ body.dark-mode {
     margin: 0;
     padding: 0;
     background-color: #121212;
-    color: #E0E0E0;
+    color: #D3D3D3;
 }
 
 body.dark-mode h1 {
-    color: #E0E0E0;
+    color: #D3D3D3;
     font-family: 'Playfair Display', serif;
     font-size: 3em;
     text-align: center;
@@ -32,7 +32,7 @@ body.dark-mode .sort-btn {
     margin-bottom: 1em;
     border: 1px solid #444444;
     background-color: #1E1E1E;
-    color: #E0E0E0;
+    color: #D3D3D3;
     font-family: 'Merriweather', serif;
 }
 
@@ -96,7 +96,7 @@ body.dark-mode .post:hover {
 }
 
 body.dark-mode .post-content {
-    color: #E0E0E0;
+    color: #D3D3D3;
     font-weight: bold;
     font-size: 1.2em;
     margin-bottom: 0.6em;
@@ -118,7 +118,7 @@ body.dark-mode a {
 }
 
 body.dark-mode a:hover {
-    color: #E0E0E0;
+    color: #D3D3D3;
 }
 
 body.dark-mode .button-disabled {
@@ -167,7 +167,7 @@ body.dark-mode .auth-form {
 
 body.dark-mode .auth-form label {
     font-size: 1em;
-    color: #E0E0E0;
+    color: #D3D3D3;
     font-family: 'Merriweather', serif;
 }
 
@@ -179,7 +179,7 @@ body.dark-mode .auth-form input {
     outline: none;
     font-family: 'Merriweather', serif;
     background-color: #333333;
-    color: #E0E0E0;
+    color: #D3D3D3;
 }
 
 body.dark-mode .auth-form input:focus {
@@ -253,7 +253,7 @@ body.dark-mode .post-form textarea {
     font-size: 1em;
     font-family: 'Merriweather', serif;
     background-color: #333333;
-    color: #E0E0E0;
+    color: #D3D3D3;
 }
 
 body.dark-mode .post-form button {
@@ -290,7 +290,7 @@ body.dark-mode .post-paragraph {
     margin-bottom: 2em;
     font-size: 1em;
     line-height: 1.8;
-    color: #E0E0E0;
+    color: #D3D3D3;
     font-family: 'Merriweather', serif;
 }
 
@@ -319,7 +319,7 @@ body.dark-mode .comment {
 body.dark-mode .comment-content {
     font-size: 1em;
     margin-bottom: 0.5em;
-    color: #E0E0E0;
+    color: #D3D3D3;
     font-family: 'Merriweather', serif;
 }
 
@@ -365,7 +365,7 @@ body.dark-mode #addCommentForm textarea {
     font-size: 1em;
     font-family: 'Merriweather', serif;
     background-color: #333333;
-    color: #E0E0E0;
+    color: #D3D3D3;
 }
 
 body.dark-mode #addCommentForm button {
@@ -402,7 +402,7 @@ body.dark-mode .login-message-container {
 body.dark-mode .login-message-container p {
     margin: 0;
     font-family: 'Merriweather', serif;
-    color: #E0E0E0;
+    color: #D3D3D3;
 }
 
 body.dark-mode .post-buttons button,
@@ -456,7 +456,7 @@ body.dark-mode #edit-password form p {
     margin-bottom: 0.5em;
     font-size: 1em;
     line-height: 1.8;
-    color: #E0E0E0;
+    color: #D3D3D3;
     font-family: 'Merriweather', serif;
 }
 
@@ -488,7 +488,7 @@ body.dark-mode input[type="password"] {
     font-size: 1em;
     font-family: 'Merriweather', serif;
     background-color: #333333;
-    color: #E0E0E0;
+    color: #D3D3D3;
 }
 
 body.dark-mode .error {
@@ -502,14 +502,24 @@ body.dark-mode .navbar {
     border-bottom: 1px solid #444444;
     overflow: hidden;
     font-family: 'Merriweather', serif;
-    padding: 1em;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0.5em 1em;
+}
+
+body.dark-mode .navbar-left {
+    display: flex;
+    align-items: center;
+}
+
+body.dark-mode .navbar-left a,
+body.dark-mode .navbar-left button {
+    margin-right: 0.5em;
 }
 
 body.dark-mode .navbar a {
-    color: #E0E0E0;
+    color: #D3D3D3;
     text-align: center;
     padding: 0.875em 1.5em;
     text-decoration: none;
@@ -531,6 +541,29 @@ body.dark-mode .navbar-links a {
 body.dark-mode .navbar a:hover {
     background-color: #292929;
     color: #AAAAAA;
+}
+
+body.dark-mode #theme-toggle {
+    color: #D3D3D3;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    top: -10px;
+}
+
+body.dark-mode #theme-toggle:hover {
+    background-color: #292929;
+    color: #AAAAAA;
+}
+
+body.dark-mode #theme-toggle i {
+    font-size: 1.2em;
+    vertical-align: middle;
 }
 
 @media screen and (max-width: 600px) {

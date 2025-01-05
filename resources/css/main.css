@@ -431,15 +431,6 @@ a:hover {
     background-color: #555555;
 }
 
-@media screen and (max-width: 600px) {
-    .posts-list,
-    .auth-container,
-    .post-form-container,
-    .post-content-container {
-        min-width: 90%;
-    }
-}
-
 .profile-container {
     width: 80%;
     max-width: 500px;
@@ -518,14 +509,20 @@ input[type="password"] {
 }
 
 .navbar {
-    background-color: #FFFFFF;
-    border-bottom: 1px solid #CCCCCC;
-    overflow: hidden;
-    font-family: 'Merriweather', serif;
-    padding: 1em;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0.5em 1em;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-left a,
+.navbar-left button {
+    margin-right: 0.5em;
 }
 
 .navbar a {
@@ -552,6 +549,40 @@ input[type="password"] {
     background-color: #EAEAEA;
     color: #555555;
 }
+
+#theme-toggle {
+    color: #333333;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    top: -10px;
+}
+
+#theme-toggle:hover {
+    background-color: #EAEAEA;
+    color: #555555;
+}
+
+#theme-toggle i {
+    font-size: 1.2em;
+    vertical-align: middle;
+}
+
+
+@media screen and (max-width: 600px) {
+    .posts-list,
+    .auth-container,
+    .post-form-container,
+    .post-content-container {
+        min-width: 90%;
+    }
+}
+
 
 @media screen and (max-width: 600px) {
     .navbar {

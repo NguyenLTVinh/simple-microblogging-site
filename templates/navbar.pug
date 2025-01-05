@@ -1,14 +1,13 @@
 mixin navbar(userId)
     nav.navbar
-        if userId
+        .navbar-left
+            button#theme-toggle
             a(href="/") Main Page
-            .navbar-links
+        .navbar-links
+            if userId
                 a(href="/my-profile") My Profile
                 a(href="/my-posts") My Posts
                 a(href="/api/logout") Log Out
-        else
-            a(href="/") Main Page
-            .navbar-links
+            else
                 a(href="/register") Register
                 a(href="/login") Log In
-        button#theme-toggle Toggle Theme
