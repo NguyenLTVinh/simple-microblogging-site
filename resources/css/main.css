@@ -1,7 +1,7 @@
 body {
     font-family: 'Merriweather', serif;
     margin: 0;
-    padding: 0;
+    padding-top: 60px;
     background-color: #FAFAFA;
 }
 
@@ -509,10 +509,19 @@ input[type="password"] {
 }
 
 .navbar {
+    background-color: #FAFAFA;
+    border-bottom: 1px solid #CCCCCC;
+    overflow: hidden;
+    font-family: 'Merriweather', serif;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0.5em 1em;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 .navbar-left {
@@ -542,7 +551,7 @@ input[type="password"] {
 }
 
 .navbar-links a {
-    margin-left: 0.5em;
+    margin-right: 1em;
 }
 
 .navbar a:hover {

@@ -1,7 +1,7 @@
 body.dark-mode {
     font-family: 'Merriweather', serif;
     margin: 0;
-    padding: 0;
+    padding-top: 60px;
     background-color: #121212;
     color: #D3D3D3;
 }
@@ -506,6 +506,11 @@ body.dark-mode .navbar {
     justify-content: space-between;
     align-items: center;
     padding: 0.5em 1em;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 body.dark-mode .navbar-left {
@@ -535,7 +540,7 @@ body.dark-mode .navbar-links {
 }
 
 body.dark-mode .navbar-links a {
-    margin-left: 0.5em;
+    margin-right: 1em;
 }
 
 body.dark-mode .navbar a:hover {
