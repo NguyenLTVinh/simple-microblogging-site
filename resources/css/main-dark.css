@@ -438,12 +438,19 @@ body.dark-mode .profile-container {
     align-items: center;
 }
 
-body.dark-mode #profile-info,
+body.dark-mode #profile-info {
+    width: 100%;
+    margin-bottom: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 body.dark-mode #edit-profile,
 body.dark-mode #edit-password {
     width: 100%;
     margin-bottom: 2em;
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
 }
