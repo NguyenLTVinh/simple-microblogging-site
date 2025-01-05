@@ -1,4 +1,4 @@
-body {
+body.dark-mode {
     font-family: 'Merriweather', serif;
     margin: 0;
     padding: 0;
@@ -6,7 +6,7 @@ body {
     color: #E0E0E0;
 }
 
-h1 {
+body.dark-mode h1 {
     color: #E0E0E0;
     font-family: 'Playfair Display', serif;
     font-size: 3em;
@@ -15,19 +15,18 @@ h1 {
     margin: 1em 0;
 }
 
-form {
+body.dark-mode form {
     text-align: center;
     margin: 2em 0;
 }
 
-form button {
+body.dark-mode form button {
     font-family: 'Merriweather', serif;
 }
 
-/* Styles for Main and My Posts Pages */
-.create-post-btn,
-.sort-options,
-.sort-btn {
+body.dark-mode .create-post-btn,
+body.dark-mode .sort-options,
+body.dark-mode .sort-btn {
     padding: 0.8em 1.2em;
     font-size: 1.1em;
     margin-bottom: 1em;
@@ -37,13 +36,13 @@ form button {
     font-family: 'Merriweather', serif;
 }
 
-.create-post-btn:hover,
-.sort-btn:hover,
-.sort-options:hover {
+body.dark-mode .create-post-btn:hover,
+body.dark-mode .sort-btn:hover,
+body.dark-mode .sort-options:hover {
     background-color: #333333;
 }
 
-.like-btn {
+body.dark-mode .like-btn {
     background-color: #444444;
     color: white;
     border: none;
@@ -55,34 +54,34 @@ form button {
     font-family: 'Merriweather', serif;
 }
 
-.like-btn:hover {
+body.dark-mode .like-btn:hover {
     background-color: #222222;
 }
 
-.like-btn[data-liked="false"] i {
+body.dark-mode .like-btn[data-liked="false"] i {
     color: white;
 }
 
-.like-btn[data-liked="true"] i {
+body.dark-mode .like-btn[data-liked="true"] i {
     color: #FFD700;
 }
 
-.like-btn[data-liked="true"]:hover i {
+body.dark-mode .like-btn[data-liked="true"]:hover i {
     color: #F0C419;
 }
 
-.like-btn[data-liked="false"]:hover i {
+body.dark-mode .like-btn[data-liked="false"]:hover i {
     color: #AAAAAA;
 }
 
-.posts-list {
+body.dark-mode .posts-list {
     width: 80%;
     max-width: 100%;
     min-width: 400px;
     margin: auto;
 }
 
-.post {
+body.dark-mode .post {
     background-color: #1E1E1E;
     padding: 1.5em;
     margin-bottom: 1.5em;
@@ -92,11 +91,11 @@ form button {
     cursor: pointer;
 }
 
-.post:hover {
+body.dark-mode .post:hover {
     background-color: #292929;
 }
 
-.post-content {
+body.dark-mode .post-content {
     color: #E0E0E0;
     font-weight: bold;
     font-size: 1.2em;
@@ -104,35 +103,35 @@ form button {
     font-family: 'Merriweather', serif;
 }
 
-.post-author,
-.date-time {
+body.dark-mode .post-author,
+body.dark-mode .date-time {
     color: #AAAAAA;
     font-style: italic;
     margin-bottom: 0.6em;
 }
 
-a {
+body.dark-mode a {
     color: #66BBFF;
     text-decoration: none;
     padding: 0.3em 0.6em;
     transition: color 0.3s;
 }
 
-a:hover {
+body.dark-mode a:hover {
     color: #E0E0E0;
 }
 
-.button-disabled {
+body.dark-mode .button-disabled {
     opacity: 0.5;
     cursor: not-allowed;
 }
 
-.pagination {
+body.dark-mode .pagination {
     text-align: center;
     margin: 2em 0;
 }
 
-.pagination a {
+body.dark-mode .pagination a {
     background-color: #444444;
     color: white;
     padding: 0.6em 1em;
@@ -142,12 +141,11 @@ a:hover {
     transition: background-color 0.3s;
 }
 
-.pagination a:hover {
+body.dark-mode .pagination a:hover {
     background-color: #222222;
 }
 
-/* Styles for Login and Register Pages */
-.auth-container {
+body.dark-mode .auth-container {
     width: 30%;
     max-width: 100%;
     min-width: 400px;
@@ -161,19 +159,19 @@ a:hover {
     align-items: center;
 }
 
-.auth-form {
+body.dark-mode .auth-form {
     display: flex;
     flex-direction: column;
     gap: 1em;
 }
 
-.auth-form label {
+body.dark-mode .auth-form label {
     font-size: 1em;
     color: #E0E0E0;
     font-family: 'Merriweather', serif;
 }
 
-.auth-form input {
+body.dark-mode .auth-form input {
     font-size: 1em;
     padding: 0.5em;
     border: 1px solid #444444;
@@ -184,11 +182,11 @@ a:hover {
     color: #E0E0E0;
 }
 
-.auth-form input:focus {
+body.dark-mode .auth-form input:focus {
     border-color: #AAAAAA;
 }
 
-.auth-form button {
+body.dark-mode .auth-form button {
     padding: 0.6em 1em;
     background-color: #222222;
     color: white;
@@ -198,34 +196,33 @@ a:hover {
     transition: background-color 0.3s;
 }
 
-.auth-form button:hover {
+body.dark-mode .auth-form button:hover {
     background-color: #444444;
 }
 
-.error {
+body.dark-mode .error {
     color: #FF6B6B;
     font-size: 0.9em;
     margin-top: 0.5em;
 }
 
-.auth-form p {
+body.dark-mode .auth-form p {
     text-align: center;
     font-size: 0.9em;
     color: #AAAAAA;
     font-family: 'Merriweather', serif;
 }
 
-.auth-form a {
+body.dark-mode .auth-form a {
     color: #66BBFF;
     text-decoration: none;
 }
 
-.auth-form a:hover {
+body.dark-mode .auth-form a:hover {
     text-decoration: underline;
 }
 
-/* Styles for Create and Edit Post Pages */
-.post-form-container {
+body.dark-mode .post-form-container {
     width: 30%;
     max-width: 100%;
     min-width: 400px;
@@ -239,14 +236,14 @@ a:hover {
     align-items: center;
 }
 
-.post-form {
+body.dark-mode .post-form {
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 1em;
 }
 
-.post-form textarea {
+body.dark-mode .post-form textarea {
     width: 100%;
     height: 200px;
     padding: 0.5em;
@@ -259,7 +256,7 @@ a:hover {
     color: #E0E0E0;
 }
 
-.post-form button {
+body.dark-mode .post-form button {
     padding: 0.6em 1em;
     width: 100%;
     background-color: #222222;
@@ -270,12 +267,11 @@ a:hover {
     transition: background-color 0.3s;
 }
 
-.post-form button:hover {
+body.dark-mode .post-form button:hover {
     background-color: #444444;
 }
 
-/* Styles for Post Page */
-.post-content-container {
+body.dark-mode .post-content-container {
     width: 80%;
     max-width: 700px;
     margin: 2em auto;
@@ -288,7 +284,7 @@ a:hover {
     align-items: center;
 }
 
-.post-paragraph {
+body.dark-mode .post-paragraph {
     text-align: left;
     width: 100%;
     margin-bottom: 2em;
@@ -298,28 +294,21 @@ a:hover {
     font-family: 'Merriweather', serif;
 }
 
-.post-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1em;
-    align-items: center;
-}
-
-.comments-section {
+body.dark-mode .comments-section {
     width: 80%;
     max-width: 700px;
     margin: 2em auto;
     text-align: left;
 }
 
-.comments-list {
+body.dark-mode .comments-list {
     list-style-type: none;
     padding: 0;
     margin: 0;
     width: 100%;
 }
 
-.comment {
+body.dark-mode .comment {
     margin-bottom: 1.5em;
     display: flex;
     flex-direction: column;
@@ -327,14 +316,14 @@ a:hover {
     text-align: left;
 }
 
-.comment-content {
+body.dark-mode .comment-content {
     font-size: 1em;
     margin-bottom: 0.5em;
     color: #E0E0E0;
     font-family: 'Merriweather', serif;
 }
 
-.comment-author {
+body.dark-mode .comment-author {
     font-size: 0.9em;
     color: #AAAAAA;
     font-style: italic;
@@ -342,7 +331,7 @@ a:hover {
     font-family: 'Merriweather', serif;
 }
 
-.comment button {
+body.dark-mode .comment button {
     padding: 0.6em 1.2em;
     background-color: #222222;
     color: white;
@@ -352,11 +341,11 @@ a:hover {
     transition: background-color 0.3s;
 }
 
-.comment button:hover {
+body.dark-mode .comment button:hover {
     background-color: #444444;
 }
 
-#addCommentForm {
+body.dark-mode #addCommentForm {
     width: 100%;
     margin-top: 2em;
     display: flex;
@@ -365,7 +354,7 @@ a:hover {
     align-items: center;
 }
 
-#addCommentForm textarea {
+body.dark-mode #addCommentForm textarea {
     width: 80%;
     max-width: 700px;
     height: 150px;
@@ -379,7 +368,7 @@ a:hover {
     color: #E0E0E0;
 }
 
-#addCommentForm button {
+body.dark-mode #addCommentForm button {
     padding: 0.6em 1.2em;
     background-color: #222222;
     color: white;
@@ -389,11 +378,11 @@ a:hover {
     transition: background-color 0.3s;
 }
 
-#addCommentForm button:hover {
+body.dark-mode #addCommentForm button:hover {
     background-color: #444444;
 }
 
-.comments-section p {
+body.dark-mode .comments-section p {
     font-size: 1em;
     color: #AAAAAA;
     margin: 1em 0;
@@ -401,7 +390,7 @@ a:hover {
     font-family: 'Merriweather', serif;
 }
 
-.login-message-container {
+body.dark-mode .login-message-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -410,14 +399,14 @@ a:hover {
     margin: 20px auto;
 }
 
-.login-message-container p {
+body.dark-mode .login-message-container p {
     margin: 0;
     font-family: 'Merriweather', serif;
     color: #E0E0E0;
 }
 
-.post-buttons button,
-.post-buttons form button {
+body.dark-mode .post-buttons button,
+body.dark-mode .post-buttons form button {
     padding: 0.6em 1em;
     background-color: #222222;
     color: white;
@@ -431,21 +420,12 @@ a:hover {
     height: 40px;
 }
 
-.post-buttons button:hover,
-.post-buttons form button:hover {
+body.dark-mode .post-buttons button:hover,
+body.dark-mode .post-buttons form button:hover {
     background-color: #444444;
 }
 
-@media screen and (max-width: 600px) {
-    .posts-list,
-    .auth-container,
-    .post-form-container,
-    .post-content-container {
-        min-width: 90%;
-    }
-}
-
-.profile-container {
+body.dark-mode .profile-container {
     width: 80%;
     max-width: 500px;
     margin: 2em auto;
@@ -458,7 +438,9 @@ a:hover {
     align-items: center;
 }
 
-#profile-info {
+body.dark-mode #profile-info,
+body.dark-mode #edit-profile,
+body.dark-mode #edit-password {
     width: 100%;
     margin-bottom: 2em;
     display: flex;
@@ -466,18 +448,9 @@ a:hover {
     align-items: center;
 }
 
-#edit-profile,
-#edit-password {
-    width: 100%;
-    margin-bottom: 2em;
-    display: none;
-    flex-direction: column;
-    align-items: center;
-}
-
-#profile-info p,
-#edit-profile form p,
-#edit-password form p {
+body.dark-mode #profile-info p,
+body.dark-mode #edit-profile form p,
+body.dark-mode #edit-password form p {
     text-align: left;
     width: 100%;
     margin-bottom: 0.5em;
@@ -487,7 +460,7 @@ a:hover {
     font-family: 'Merriweather', serif;
 }
 
-button {
+body.dark-mode button {
     padding: 0.6em 1em;
     background-color: #222222;
     color: white;
@@ -500,13 +473,13 @@ button {
     margin-top: 1em;
 }
 
-button:hover {
+body.dark-mode button:hover {
     background-color: #444444;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
+body.dark-mode input[type="text"],
+body.dark-mode input[type="email"],
+body.dark-mode input[type="password"] {
     width: 100%;
     padding: 0.5em;
     border: 1px solid #444444;
@@ -518,13 +491,13 @@ input[type="password"] {
     color: #E0E0E0;
 }
 
-.error {
+body.dark-mode .error {
     color: #FF6B6B;
     font-size: 0.9em;
     margin-top: 0.5em;
 }
 
-.navbar {
+body.dark-mode .navbar {
     background-color: #1E1E1E;
     border-bottom: 1px solid #444444;
     overflow: hidden;
@@ -535,7 +508,7 @@ input[type="password"] {
     align-items: center;
 }
 
-.navbar a {
+body.dark-mode .navbar a {
     color: #E0E0E0;
     text-align: center;
     padding: 0.875em 1.5em;
@@ -546,32 +519,40 @@ input[type="password"] {
     font-family: 'Merriweather', serif;
 }
 
-.navbar-links {
+body.dark-mode .navbar-links {
     display: flex;
     align-items: center;
 }
 
-.navbar-links a {
+body.dark-mode .navbar-links a {
     margin-left: 0.5em;
 }
 
-.navbar a:hover {
+body.dark-mode .navbar a:hover {
     background-color: #292929;
     color: #AAAAAA;
 }
 
 @media screen and (max-width: 600px) {
-    .navbar {
+    body.dark-mode .posts-list,
+    body.dark-mode .auth-container,
+    body.dark-mode .post-form-container,
+    body.dark-mode .post-content-container {
+        min-width: 90%;
+    }
+
+    body.dark-mode .navbar {
         flex-direction: column;
         align-items: flex-start;
     }
 
-    .navbar-links, .navbar-links a {
+    body.dark-mode .navbar-links,
+    body.dark-mode .navbar-links a {
         width: 100%;
         margin-left: 0;
     }
 
-    .navbar-links a {
+    body.dark-mode .navbar-links a {
         margin-bottom: 0.5em;
     }
 }
