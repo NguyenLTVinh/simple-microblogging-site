@@ -1,14 +1,15 @@
 // this package behaves just like the mysql one, but uses async await instead of callbacks.
 const mysql = require(`mysql-await`); // npm install mysql-await
+require('dotenv').config();
 
 // first -- I want a connection pool: https://www.npmjs.com/package/mysql#pooling-connections
 // this is used a bit differently, but I think it's just better -- especially if server is doing heavy work.
 var connPool = mysql.createPool({
-    connectionLimit: 5, // it's a shared resource, let's not go nuts.
-    host: "localhost",// this will work
-    user: USER,
-    database: "C4131F23U159",
-    password: PASSWORD,
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT || 3306,
 });
 
 async function addUser(username, email, hashedPassword) {
