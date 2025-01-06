@@ -23,7 +23,8 @@ html(lang="en")
                     p.post-content= post.content
                     p.post-author Posted by #{post.username} at 
                         span.date-time #{post.created_at}
-                    button.like-btn(id=`like-btn-${post.id}` onclick=`likePost('${post.id}')` data-liked=post.liked) Like
+                    button.like-btn(id=`like-btn-${post.id}` onclick=`likePost('${post.id}')` data-liked=post.liked)
+                        i.fa.fa-thumbs-up(id=`like-icon-${post.id}` aria-hidden="true")
                     span(id=`like-count-${post.id}`)= post.like_count
         if pagination.prev || pagination.next
             .pagination
