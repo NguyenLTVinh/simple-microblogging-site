@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
 body {
     font-family: 'Merriweather', serif;
     margin: 0;
@@ -543,6 +545,13 @@ input[type="password"] {
     border-radius: 4px;
     font-weight: bold;
     font-family: 'Merriweather', serif;
+}
+
+.navbar-left a {
+    font-family: 'Pacifico', cursive;
+    font-weight: bolder;
+    font-size: 1.5em;
+    padding: 0.5em 0.75em;
 }
 
 .navbar-links {

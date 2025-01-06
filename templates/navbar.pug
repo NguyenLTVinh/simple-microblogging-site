@@ -2,7 +2,9 @@ mixin navbar(userId)
     nav.navbar
         .navbar-left
             button#theme-toggle
-            a(href="/") Main Page
+            a(href="/") 
+                i.fas.fa-dove
+                |  CHIRP!
         .navbar-links
             if userId
                 a(href="/my-profile") My Profile
