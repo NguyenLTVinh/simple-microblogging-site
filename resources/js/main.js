@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     setInterval(updateLikeCounts, 500);
+    updateLikeButtonStyles();
     var likeButtons = document.querySelectorAll('[id^="like-btn-"]');
     // Code below prevents going to post when clicked on like button
     likeButtons.forEach(function (button) {
@@ -29,6 +30,19 @@ function goToPost(postId) {
     window.location.href = `/post/${postId}`;
 }
 
+function updateLikeButtonStyles() {
+    const likeButtons = document.querySelectorAll('[id^="like-btn-"]');
+    likeButtons.forEach(button => {
+        const isLiked = button.dataset.liked === 'true';
+        const icon = button.querySelector('i');
+        if (isLiked) {
+            icon.style.color = '#ffd700';
+        } else {
+            icon.style.color = 'white';
+        }
+    });
+}
+
 async function likePost(postId) {
     try {
         const likeButton = document.getElementById(`like-btn-${postId}`);
@@ -50,13 +64,16 @@ async function likePost(postId) {
         }
 
         if (response.ok) {
+            const icon = likeButton.querySelector('i');
             let currentCount = parseInt(likeCountElement.innerText) || 0;
             if (likeButton.dataset.liked === 'true') {
                 currentCount--;
                 likeButton.dataset.liked = 'false';
+                icon.style.color = 'white'
             } else {
                 currentCount++;
                 likeButton.dataset.liked = 'true';
+                icon.style.color = '#ffd700'
             }
             //likeCountElement.innerText = currentCount;
         }
