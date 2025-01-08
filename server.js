@@ -169,7 +169,6 @@ app.get('/api/like-counts', async (req, res) => {
     }
 });
 
-
 // Handle the registration form submission
 app.post('/api/register', async (req, res) => {
     try {
@@ -399,6 +398,8 @@ app.delete('/api/comments/:id', async (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
+
+module.exports = server
